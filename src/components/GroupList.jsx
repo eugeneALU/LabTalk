@@ -32,7 +32,6 @@ class GroupList extends React.Component {
         this.handle_addgroupbutton_toggle = this.handle_addgroupbutton_toggle.bind(this);
         this.handle_creategroup = this.handle_creategroup.bind(this);
     }
-
     render() {
         const {dispatch, addgroup_modal_Toggle, groups} = this.props;
         let children = (
@@ -44,6 +43,7 @@ class GroupList extends React.Component {
         );
         if (groups.length) {
           children = groups.map(p => (
+
               <ListGroupItem key={p.id} action>
                   <GroupItem {...p} />
               </ListGroupItem>
@@ -66,7 +66,7 @@ class GroupList extends React.Component {
                             <div>
                               <InputGroup>
                                 <InputGroupAddon>Group Name</InputGroupAddon>
-                                <Input type="text"  getRef={(input)=>(this.input=input)} placeholder="Enter your Group Name"/>
+                                <Input type="text"  getRef={(e)=>(this.groupnameEL=e)} placeholder="Enter your Group Name"/>
                               </InputGroup>
                             </div>
                         </ModalBody>
@@ -85,8 +85,7 @@ class GroupList extends React.Component {
         this.props.dispatch(toggleAddGroupModal());
     }
     handle_creategroup(e) {
-      console.log(this.input.value);
-      this.props.dispatch(createGroup(this.input.value,''));
+      this.props.dispatch(createGroup(this.groupnameEL.value,''));
     }
 }
 

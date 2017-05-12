@@ -1,66 +1,95 @@
 import axios from 'axios';
-import uuid from 'uuid/v4';
-import moment from 'moment';
-import 'babel-polyfill';
 
-const groupsKey = 'groups';
+
+
+const postBaseUrl = 'http://localhost:8080/api';
 
 export function listGroups(searchText = '') {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(_listGroups(searchText));
-        }, 500);
+    let url = `${postBaseUrl}/groups`;
+    if (searchText)
+        url += `?searchText=${searchText}`;
+
+    console.log(`Making GET request to: ${url}`);
+
+    return axios.get(url).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response code: ${res.status}`);
+
+        return res.data;
     });
 }
-
-// Simulated server-side code
-function _listGroups(searchText = '') {
-    let groupString = localStorage.getItem(groupsKey);
-    let groups = groupString ? JSON.parse(groupString) : [];
-    if (groups.length > 0 && searchText) {
-        groups = groups.filter(p => {
-            return p.name.toLocaleLowerCase().indexOf(searchText.toLowerCase()) !== -1
-        });
-    }
-    return groups;
-};
 
 export function createGroup(name) {
-    return new Promise((resolve, reject) => {
-        resolve(_createGroup(name));
+    let url = `${postBaseUrl}/groups`;
+
+    console.log(`Making POST request to: ${url}`);
+
+    return axios.post(url, {
+        name
+    }).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response code: ${res.status}`);
+
+        return res.data;
     });
 }
 
-// Simulated server-side code
-function _createGroup(name) {
-    const newgroup = {
-        id: uuid(),
-        name: name,
-        ts: moment().unix()
-    };
-    const groups = [
-        newgroup,
-        ..._listGroups()
-    ];
-    localStorage.setItem(groupsKey, JSON.stringify(groups));
-    return newgroup;
+export function addGroupMembers(id, username) {
+    let url = `${postBaseUrl}/groups/members/add`;
+
+    console.log(`Making POST request to: ${url}`);
+
+    return axios.post(url, {
+        id,
+        username
+    }).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response code: ${res.status}`);
+
+        return res.data;
+    });
+}
+
+export function deleteGroupMembers(id, username) {
+    let url = `${postBaseUrl}/groups/members/delete`;
+
+    console.log(`Making POST request to: ${url}`);
+
+    return axios.post(url, {
+        id,
+        username
+    }).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response code: ${res.status}`);
+
+        return res.data;
+    });
+}
+
+export function getGroup(id) {
+    let url = `${postBaseUrl}/groups/${id}`;
+
+    console.log(`Making POST request to: ${url}`);
+
+    return axios.get(url).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response code: ${res.status}`);
+
+        return res.data;
+    });
 }
 
 export function deleteGroup(id) {
-    return new Promise((resolve, reject) => {
-        resolve(_deleteGroup(id));
-    });
-}
+    let url = `${postBaseUrl}/groups/delete`;
 
-function _deleteGroup(id) {
-  let groupString = localStorage.getItem(groupsKey);
-  let groups = groupString ? JSON.parse(groupString) : [];
-  if (groups.length > 0) {
-      groups = groups.filter(p => {
-          if(p.id !== id)
-            return p
-      });
-  }
-  localStorage.setItem(groupsKey, JSON.stringify(groups));
-  return groups;
+    console.log(`Making POST request to: ${url}`);
+
+    return axios.post(url, {
+        id
+    }).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response code: ${res.status}`);
+
+        return res.data;
+    });
 }

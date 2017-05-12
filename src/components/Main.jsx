@@ -5,7 +5,7 @@ import './Main.css';
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {Provider} from 'react-redux';
-import {grouplist} from 'states/group-reducers.js';
+import {grouplist, groupitem, chatroom, chatlist, chatroom_hid} from 'states/group-reducers.js';
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -17,7 +17,11 @@ export default class Main extends React.Component {
     componentWillMount() {
         const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
         this.store = createStore(combineReducers({
-            grouplist
+            grouplist,
+            groupitem,
+            chatroom,
+            chatlist,
+            chatroom_hid
         }), composeEnhancers(applyMiddleware(thunkMiddleware/*, loggerMiddleware*/)));
     }
 
