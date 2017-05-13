@@ -22,3 +22,30 @@
    background-color: rgb(242, 192, 12);
    cursor: pointer;
 }
+.chat-list {
+  border:0.05rem solid lightgray;
+  border-radius: 0.5rem;
+  height:28rem!important;
+  overflow: auto;
+  word-wrap:break-word;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-track {
+border: 1px solid lightgray;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: lightgray;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: lightgray;
+}

@@ -1,0 +1,38 @@
+.s1{
+    width: 5rem;
+}
+.s2 {
+    width: 10rem;
+}
+.s3{
+    width: 60%;
+}
+
+
+.chat-text-other {
+  background-color: rgb(228, 231, 247);
+  border: 0.5rem solid rgb(228, 231, 247);
+  border-radius: 0.5rem;
+}
+
+.chat-text-me {
+  background-color: rgb(228, 231, 247);
+  border: 0.5rem solid rgb(228, 231, 247);
+  border-radius: 0.5rem;
+  text-align: right!important;
+}
+
+.chat-username-other {
+  background-color: rgb(62, 215, 69);
+  border: 0.5rem solid rgb(62, 215, 69);
+  border-radius: 0.5rem;
+  color: white!important;
+  height: 2rem!important;
+}
+.chat-username-me {
+  background-color: rgb(247, 107, 88);
+  border: 0.5rem solid rgb(247, 107, 88);
+  border-radius: 0.5rem;
+  color: white!important;
+  height: 2rem!important;
+}

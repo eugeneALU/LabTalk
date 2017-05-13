@@ -5,8 +5,6 @@ import {
     InputGroup,
     InputGroupAddon,
     Input,
-    ListGroup,
-    ListGroupItem,
     Button
 } from 'reactstrap';
 import ChatItem_HID from 'components/ChatItem_HID.jsx';
@@ -30,23 +28,23 @@ class ChatRoom_HID extends React.Component {
     render() {
       const {chats_hid} = this.props;
       let children = (
-          <ListGroupItem className='empty d-flex justify-content-center align-items-center' >
+          <div className='empty d-flex justify-content-center align-items-center' >
               <div className='empty-text'>No Conversation here.</div>
-          </ListGroupItem>
+          </div>
 
       );
       if (chats_hid.length) {
         children = chats_hid.map(p => (
-            <ListGroupItem key={p.id} action>
+            <div key={p.id} action>
                 <ChatItem_HID {...p} />
-            </ListGroupItem>
+            </div>
         ));
       }
       return(
         <div>
         <h1>Disccusion Room</h1>
-          <div className='chat-list'>
-                <ListGroup>{children}</ListGroup>
+          <div className='chat-list-hid'>
+                <p>{children}</p>
           </div>
         </div>
       );

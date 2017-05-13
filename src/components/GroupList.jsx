@@ -24,6 +24,7 @@ class GroupList extends React.Component {
     static propTypes = {
         addgroup_modal_Toggle: PropTypes.bool,
         groups: PropTypes.array,
+        username_login: PropTypes.string,
         dispatch: PropTypes.func
     };
     constructor(props) {
@@ -52,9 +53,9 @@ class GroupList extends React.Component {
 
         return (
             <div>
-                <div className='group-list'>
+                <div>
                     <center><h2>Groups List</h2></center>
-                    <ListGroup>{children}</ListGroup>
+                    <div  className='group-list'><ListGroup>{children}</ListGroup></div>
                 </div>
                 <div className="d-flex justify-content-center mt-3">
                     <Button outline color="info" onClick={this.handle_addgroupbutton_toggle}>Create Groups +</Button>
@@ -85,10 +86,13 @@ class GroupList extends React.Component {
         this.props.dispatch(toggleAddGroupModal());
     }
     handle_creategroup(e) {
-      this.props.dispatch(createGroup(this.groupnameEL.value,''));
+      this.props.dispatch(createGroup(this.groupnameEL.value,this.props.username_login,''));
     }
 }
 
 export default connect((state) => {
-    return state.grouplist;
+  return {
+      ...state.grouplist,
+      ...state.chatlist
+  };
 })(GroupList);

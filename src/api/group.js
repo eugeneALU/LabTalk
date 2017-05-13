@@ -19,13 +19,14 @@ export function listGroups(searchText = '') {
     });
 }
 
-export function createGroup(name) {
+export function createGroup(groupname, username) {
     let url = `${postBaseUrl}/groups`;
 
     console.log(`Making POST request to: ${url}`);
 
     return axios.post(url, {
-        name
+        groupname,
+        username
     }).then(function(res) {
         if (res.status !== 200)
             throw new Error(`Unexpected response code: ${res.status}`);

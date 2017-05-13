@@ -5,13 +5,11 @@ import {
     InputGroup,
     InputGroupAddon,
     Input,
-    ListGroup,
-    ListGroupItem,
     Button
 } from 'reactstrap';
 
 import ChatItem from 'components/ChatItem.jsx';
-import {createChat, openHiddenChatroom, closeHiddenChatroom, createChat_hid} from 'states/group-actions.js';
+import {createChat, changeHiddenChatroom, closeHiddenChatroom, createChat_hid, changeChatroom, listChats} from 'states/group-actions.js';
 
 import './ChatRoom.css';
 
@@ -20,56 +18,59 @@ class ChatRoom extends React.Component {
     static propTypes = {
         chats: PropTypes.array,
         hiddenchatroom_open: PropTypes.bool,
+        username_login: PropTypes.string,
         dispatch: PropTypes.func
 
     };
     constructor(props) {
         super(props);
-
         this.handle_chat_submit = this.handle_chat_submit.bind(this);
-    }
+        this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
 
+    }
 
     render() {
       const {chats, dispatch, group} = this.props;
+
+
       let children = (
-          <ListGroupItem className='empty d-flex justify-content-center align-items-center' >
-              <div className='empty-text'>No Conversation here.</div>
-          </ListGroupItem>
+          <div className='empty d-flex justify-content-center align-items-center' >
+              <span className='empty-text'>No Conversation here.</span>
+          </div>
 
       );
       if (chats.length) {
         children = chats.map(p => (
-            <ListGroupItem key={p.id} action>
+            <div key={p.id} action>
                 <ChatItem {...p} />
-            </ListGroupItem>
+            </div>
         ));
       }
 
       let members = '';
-      let Members = '';
-      let groupname = '';
+      let groupname = group.name;
 
-      if(group){
-        Members = 'MEMBERS';
-        groupname = group.name;
+
+
         if(group.usernames) {
           members = group.usernames.map(p => (
             <a className="group-members ml-2" key={p.username+p.id}>{p.username}</a>
           ));
+
         }
-      }
+
+
 
       return(
-        <div>
+        <div className="chatroom">
         <center><h1>{groupname}</h1></center>
-        <div><a className="group-member mt-1">{Members}</a>{members}</div>
+        <div><a className="group-member mt-1">Members</a>{members}</div><br/>
         <div className='chat-list mt-2'>
-              <ListGroup>{children}</ListGroup>
+              <div>{children}</div>
         </div>
         <div>
           <InputGroup>
-            <Input type="text"  getRef={(e)=>(this.chatEL=e)} placeholder="To Say Something ~"/>
+            <Input type="text"  getRef={(e)=>(this.chatEL=e)} onKeyPress={this.handleSearchKeyPress} placeholder="Say Something  <Use '@' to open/close the dicussion room>"/>
             <Button color="info" onClick={this.handle_chat_submit}>Submit</Button>
         </InputGroup>
 
@@ -79,28 +80,38 @@ class ChatRoom extends React.Component {
       );
     }
 
-    handle_chat_submit(e){
+    handle_chat_submit(){
       if(this.chatEL.value==='@' && this.props.hiddenchatroom_open){
           this.props.dispatch(closeHiddenChatroom());
           this.chatEL.value='';
       }
       else if(this.chatEL.value==='@' && !(this.props.hiddenchatroom_open)){
-          this.props.dispatch(openHiddenChatroom());
+          this.props.dispatch(changeHiddenChatroom(this.props.group, ""));
           this.chatEL.value='@';
       }
       else if(this.chatEL.value.match(/^@/)){
-        this.props.dispatch(createChat_hid(this.props.group.id, "Me", this.chatEL.value));
+        var string_input =  this.chatEL.value.replace(/^@/, '');
+        this.props.dispatch(createChat_hid(this.props.group.id, this.props.username_login, string_input));
         this.chatEL.value='@';
       }
       else if(this.chatEL.value){
-        this.props.dispatch(createChat(this.props.group.id, "Me", this.chatEL.value));
+        this.props.dispatch(createChat(this.props.group.id, this.props.username_login, this.chatEL.value));
         this.chatEL.value='';
       }
       else{
-        
+
       }
+    }
+
+      handleSearchKeyPress(e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13){
+            this.handle_chat_submit();
+        }
+
 
     }
+
 
 
 }

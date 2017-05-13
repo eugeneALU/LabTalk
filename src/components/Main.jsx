@@ -28,9 +28,11 @@ export default class Main extends React.Component {
 
     render() {
       return(
+        <div className="main">
         <Provider store={this.store}>
           <ChatList/>
         </Provider>
+        </div>
       );
     }
 }

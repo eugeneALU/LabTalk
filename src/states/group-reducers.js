@@ -113,7 +113,8 @@ export function chatroom_hid(state = initChatRoomHIDState, action) {
 
 const initChatListState = {
 
-    hiddenchatroom_open: false
+    hiddenchatroom_open: false,
+    username_login: 'wow'
 
 };
 

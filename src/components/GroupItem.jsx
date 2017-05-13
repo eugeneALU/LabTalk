@@ -49,9 +49,10 @@ class GroupItem extends React.Component {
       return(
         <div className="group-item" >
         <div onClick={this.handleGroupClick} className="group-item justify-content-center align-items-center">
-          <h4 className="group-title">{this.props.name}<Button className="ml-5" outline color="danger" onClick={this.handleGroupDelete}>Delete Group</Button> </h4>
+          <h4 className="group-title">{this.props.name}</h4>
+          <div><Button className="ml-1" outline color="success" onClick={this.handle_addmemberbutton_toggle}>Change Members</Button><Button className="ml-2" outline color="danger" onClick={this.handleGroupDelete}>Delete Group</Button> </div>
           <br/>
-            <div><a onClick={this.handle_addmemberbutton_toggle} className="group-member">MEMBERS</a>{members}</div>
+            <div><a onClick={this.handleGroupClick} className="group-member">MEMBERS</a>{members}</div>
 
               <div>
                   <Modal isOpen={addmember_modal_Toggle && Toggle_id===id} toggle={this.handle_addmemberbutton_toggle}>
@@ -59,14 +60,13 @@ class GroupItem extends React.Component {
                       <ModalBody>
                           <div>
                             <InputGroup>
-                              <InputGroupAddon>Member Name</InputGroupAddon>
                               <Input type="text"  getRef={(input)=>(this.input=input)} placeholder="Enter the Members Name"/>
                             </InputGroup>
                           </div>
                       </ModalBody>
                       <ModalFooter>
-                          <Button color="primary" onClick={this.handleAddMembers}>Add Member</Button>
-                          <Button color="primary" onClick={this.handleDeleteMembers}>Delete Member</Button>
+                          <Button color="success" onClick={this.handleAddMembers}>Add Member</Button>
+                          <Button color="danger" onClick={this.handleDeleteMembers}>Delete Member</Button>
                           <Button color="secondary" onClick={this.handle_addmemberbutton_toggle}>Cancel</Button>
                       </ModalFooter>
                   </Modal>
@@ -90,12 +90,13 @@ class GroupItem extends React.Component {
         this.props.dispatch(DeleteMembers(this.props.id, this.input.value));
     }
     handleGroupClick(e){
-        let group={
+        let obj={
           id: this.props.id,
           name: this.props.name,
           usernames: this.props.usernames
         };
-        this.props.dispatch(changeChatroom(group, ''));
+        this.props.dispatch(changeChatroom(obj, ''));
+
     }
 }
 
@@ -103,6 +104,7 @@ export default connect((state) => {
     return {
         ...state.grouplist,
         ...state.groupitem,
-        ...state.chatroom
+        ...state.chatroom,
+        ...state.chatlist
     };
 })(GroupItem);

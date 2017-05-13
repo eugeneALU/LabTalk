@@ -50,9 +50,8 @@ export function listGroups(searchText) {
 
 export function createGroup(name, username, searchText) {
     return (dispatch, getState) => {
-      return createGroupFromApi(name, username).then(() => {
+      return createGroupFromApi(name, username).then(group => {
         dispatch(listGroups(searchText));
-
     }).catch(err => {
         console.error('Error creating posts', err);
     });
@@ -113,6 +112,7 @@ export function listChats(id, searchText) {
     };
 }
 
+
 export function createChat(id, username, searchText) {
     return (dispatch, getState) => {
       return createChatFromApi(id, username, searchText, false).then(() => {
@@ -147,6 +147,7 @@ export function createChat_hid(id, username, searchText) {
 }
 export function changeChatroom(group, searchText){
     return (dispatch, getState) => {
+      dispatch(closeHiddenChatroom());
       dispatch(changeChatroomGroup(group));
       dispatch(listChats(group.id, searchText));
     };
@@ -172,21 +173,28 @@ function changeChatroomGroup(group){
   };
 }
 
+export function changeHiddenChatroom(group, searchText){
+    return (dispatch, getState) => {
+      dispatch(openHiddenChatroom());
+      dispatch(listChats_hid(group.id, searchText));
+    };
+}
+
 export function openHiddenChatroom(){
   return{
     type: '@CHATLIST/OPEN_HIDDENCHATROOM'
-  }
+  };
 }
 
 export function closeHiddenChatroom(){
   return{
     type: '@CHATLIST/CLOSE_HIDDENCHATROOM'
-  }
+  };
 }
 function clearchats(){
   return{
     type: '@CHATROOM/CLEAR_CHATS'
-  }
+  };
 }
 function clearchats_hid(){
   return{

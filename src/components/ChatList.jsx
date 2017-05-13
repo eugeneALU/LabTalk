@@ -30,8 +30,9 @@ class ChatList extends React.Component {
       if(hiddenchatroom_open){
         chat_list = (<Row>
           <Col xs="3"><GroupList/></Col>
-          <Col xs="5"><ChatRoom/></Col>
+          <Col xs="4"><ChatRoom/></Col>
           <Col xs="4"><ChatRoom_HID/></Col>
+          <Col xs="1"></Col>
         </Row>);
       }
       else {
