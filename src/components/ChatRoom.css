@@ -1,0 +1,23 @@
+.roomtitle {
+    background-color: #F58B00;
+    height: 8.8vh;
+    width:63vw
+}
+
+.Calendartitle {
+    background-color: #F58B00;
+    height: 8.8vh;
+    width:17vw;
+}
+
+#title {
+    font-size: 5.9vh ;
+    font-weight: bold;
+}
+
+#Calendar_icon {
+    height: 75%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+

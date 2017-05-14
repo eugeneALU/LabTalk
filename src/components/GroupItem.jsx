@@ -22,9 +22,10 @@ class GroupItem extends React.Component {
 
     render(){
       return(
-        <div>
-          <h5>{this.props.name} <Button color="success" onClick={this.handleAddMember}>Add Members</Button> <Button color="danger" onClick={this.handleGroupDelete}>Delete Group</Button></h5>
-
+        <div className="d-flex flex-column justify-content-center">
+             <h5 className="ml-auto mx-auto">{this.props.name}</h5>
+             <Button color="success" onClick={this.handleAddMember}>Add Members</Button> 
+             <Button color="danger" onClick={this.handleGroupDelete}>Delete Group</Button>
         </div>
       );
     }

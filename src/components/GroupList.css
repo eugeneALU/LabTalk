@@ -1,1 +1,35 @@
+.listtitle {
+    background-color: #F58B00;
+    margin: 0;
+}
+
+.list {
+    background-color: #FFBD67;
+    height: 91vh;
+}
+
+#listicon {
+    width:2rem;
+}
+
+#listtxt {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.listbutton {
+    box-shadow: 0px 3px 15px #000;
+}
+
+#li {
+    margin: 0.5rem auto !important;
+    box-shadow: 0px 3px 15px #000;
+    display: block !important;
+}
+
+#li:hover {
+    background-color: #F58B00 !important;
+}
 

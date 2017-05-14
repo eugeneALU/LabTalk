@@ -17,13 +17,10 @@ class ChatList extends React.Component {
     }
     render() {
       return(
-
-          <Row>
-            <Col xs="4"><GroupList/></Col>
-            <Col xs="8"><ChatRoom/></Col>
-          </Row>
-
-
+          <div className="d-flex justify-content-end">
+            <div id="grouplist"><GroupList/></div>
+            <div id="chatroom"><ChatRoom/></div>
+          </div>
       );
     }
 }
