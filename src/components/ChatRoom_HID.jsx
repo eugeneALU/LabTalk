@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -22,9 +23,17 @@ class ChatRoom_HID extends React.Component {
   };
     constructor(props) {
         super(props);
+        this.scrollToBottom = this.scrollToBottom.bind(this);
 
     }
+    componentDidMount(){
+      this.scrollToBottom();
 
+    }
+  componentDidUpdate() {
+    this.scrollToBottom();
+
+  }
     render() {
       const {chats_hid} = this.props;
       let children = (
@@ -44,10 +53,16 @@ class ChatRoom_HID extends React.Component {
         <div>
         <h1>Disccusion Room</h1>
           <div className='chat-list-hid'>
-                <p>{children}</p>
+                <div className="d-flex flex-column-reverse">{children}</div>
+                <div ref={(el) => { this.messagesEnd = el; }}>{''}</div>
           </div>
         </div>
       );
+    }
+
+    scrollToBottom(){
+        const node = ReactDOM.findDOMNode(this.messagesEnd);
+        node.scrollIntoView();
     }
 
 

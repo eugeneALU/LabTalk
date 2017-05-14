@@ -18,6 +18,9 @@
   border-radius: 0.5rem;
 }
 
+.group-titleselect {
+    color: red;
+}
 .group-member:hover {
    background-color: rgb(242, 192, 12);
    cursor: pointer;

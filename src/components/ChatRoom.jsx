@@ -13,7 +13,7 @@ import ChatItem from 'components/ChatItem.jsx';
 import {createChat, changeHiddenChatroom, closeHiddenChatroom, createChat_hid, changeChatroom, listChats} from 'states/group-actions.js';
 
 import './ChatRoom.css';
-
+var update = '';
 
 class ChatRoom extends React.Component {
     static propTypes = {
@@ -34,17 +34,17 @@ class ChatRoom extends React.Component {
       this.scrollToBottom();
 
     }
-  componentDidUpdate() {
-    this.scrollToBottom();
+    componentDidUpdate() {
+      this.scrollToBottom();
 
   }
     render() {
-      const {chats, dispatch, group} = this.props;
+      const {chats, dispatch, group, username_login} = this.props;
 
 
       let children = (
           <div className='empty d-flex justify-content-center align-items-center' >
-              <span className='empty-text'>No Conversation here.</span>
+              <span className='empty-text'>尚未有任何對話...</span>
           </div>
 
       );
@@ -58,13 +58,13 @@ class ChatRoom extends React.Component {
 
       let members = '';
       let groupname = group.name;
-
-
+/*      update = setTimeout(dispatch(listChats(group.id, '')),1000)*/
 
         if(group.usernames) {
-          members = group.usernames.map(p => (
-            <a className="group-members ml-2" key={p.username+p.id}>{p.username}</a>
-          ));
+          members = group.usernames.map(p => {
+            if(p.username !== username_login)
+            return <a className="group-members ml-2" key={p.username+p.id}>{p.username}</a>
+          });
 
         }
 
@@ -73,15 +73,14 @@ class ChatRoom extends React.Component {
       return(
         <div className="chatroom">
         <center><h1>{groupname}</h1></center>
-        <div><a className="group-member mt-1">Members</a>{members}</div><br/>
+        <div><a className="group-member mt-1">成員</a>{members}</div><br/>
         <div className='chat-list mt-2'>
               <div className="d-flex flex-column-reverse">{children}</div>
               <div ref={(el) => { this.messagesEnd = el; }}>{''}</div>
         </div>
         <div>
           <InputGroup>
-            <Input type="text"  getRef={(e)=>(this.chatEL=e)} onKeyPress={this.handleSearchKeyPress} placeholder="Say Something  <Use '@' to open/close the dicussion room>"/>
-            <Button color="info" onClick={this.handle_chat_submit}>Submit</Button>
+            <Input type="text"  getRef={(e)=>(this.chatEL=e)} onKeyPress={this.handleSearchKeyPress} placeholder="輸入訊息...  <使用 @ 開啟/關閉內嵌討論室>"/>
         </InputGroup>
 
         </div>

@@ -26,13 +26,25 @@ export function toggleAddMemberModal(id) {
     };
 }
 
-function startLoading() {
+function startLoading_grouplist() {
     return {
         type: '@GROUPLIST/START_LOADING'
     };
 }
 
-function endLoading() {
+function startLoading_chatroom() {
+    return {
+        type: '@CHATROOM/START_LOADING'
+    };
+}
+
+function startLoading_chatroom_hid() {
+    return {
+        type: '@CHATROOM_HID/START_LOADING'
+    };
+}
+
+function endLoading_grouplist() {
     return {
         type: '@GROUPLIST/END_LOADING'
     };
@@ -40,7 +52,7 @@ function endLoading() {
 
 export function listGroups(searchText) {
     return (dispatch, getState) => {
-      dispatch(startLoading());
+      dispatch(startLoading_grouplist());
       return listGroupsFromApi(searchText).then(groups => {
             dispatch(getGroups(groups));
         }).catch(err => {
@@ -104,7 +116,7 @@ export function DeleteMembers(id, username) {
 
 export function listChats(id, searchText) {
     return (dispatch, getState) => {
-      dispatch(startLoading());
+      dispatch(startLoading_chatroom());
       return listChatsFromApi(id ,searchText, false).then(chats => {
             dispatch(getChats(chats));
         }).catch(err => {
@@ -127,7 +139,7 @@ export function createChat(id, username, searchText) {
 
 export function listChats_hid(id, searchText) {
     return (dispatch, getState) => {
-      dispatch(startLoading());
+      dispatch(startLoading_chatroom_hid());
       return listChatsFromApi(id ,searchText, true).then(chats => {
             dispatch(getChats_hid(chats));
         }).catch(err => {

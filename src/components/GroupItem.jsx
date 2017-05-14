@@ -23,6 +23,7 @@ class GroupItem extends React.Component {
         id: PropTypes.string,
         name: PropTypes.string,
         usernames: PropTypes.array,
+        username_login: PropTypes.string,
         chatroom_id: PropTypes.string,
         dispatch: PropTypes.func
     };
@@ -37,26 +38,32 @@ class GroupItem extends React.Component {
     }
 
     render(){
-      const {dispatch, addmember_modal_Toggle, Toggle_id, id, usernames, chatroom_id} = this.props;
+      const {dispatch, addmember_modal_Toggle, Toggle_id, id, usernames, group, username_login} = this.props;
       let members = '';
 
       if(usernames.length) {
-        members = usernames.map(p => (
-          <a className="group-members ml-2" key={p.username+p.id}>{p.username}</a>
-        ));
+        members = usernames.map(p =>{
+          if(p.username !== username_login)
+          return <a className="group-members ml-2" key={p.username+p.id}>{p.username}</a>
+        });
+      }
+      let select ='';
+
+      if(group.id===id){
+        select = 'select';
       }
 
       return(
         <div className="group-item" >
         <div onClick={this.handleGroupClick} className="group-item justify-content-center align-items-center">
-          <h4 className="group-title">{this.props.name}</h4>
-          <div><Button className="ml-1" outline color="success" onClick={this.handle_addmemberbutton_toggle}>Change Members</Button><Button className="ml-2" outline color="danger" onClick={this.handleGroupDelete}>Delete Group</Button> </div>
+          <h4 className={`group-title${select}`}>{this.props.name}</h4>
+          <div><Button className="ml-1" outline color="info" onClick={this.handle_addmemberbutton_toggle}>改變成員</Button><Button className="ml-2" outline color="danger" onClick={this.handleGroupDelete}>刪除群組</Button> </div>
           <br/>
-            <div><a onClick={this.handleGroupClick} className="group-member">MEMBERS</a>{members}</div>
+            <div><a onClick={this.handle_addmemberbutton_toggle} className="group-member">成員</a>{members}</div>
 
               <div>
                   <Modal isOpen={addmember_modal_Toggle && Toggle_id===id} toggle={this.handle_addmemberbutton_toggle}>
-                      <ModalHeader toggle={this.handle_addmemberbutton_toggle}>Change Members</ModalHeader>
+                      <ModalHeader toggle={this.handle_addmemberbutton_toggle}>改變群組成員</ModalHeader>
                       <ModalBody>
                           <div>
                             <InputGroup>
@@ -65,9 +72,9 @@ class GroupItem extends React.Component {
                           </div>
                       </ModalBody>
                       <ModalFooter>
-                          <Button color="success" onClick={this.handleAddMembers}>Add Member</Button>
-                          <Button color="danger" onClick={this.handleDeleteMembers}>Delete Member</Button>
-                          <Button color="secondary" onClick={this.handle_addmemberbutton_toggle}>Cancel</Button>
+                          <Button color="success" onClick={this.handleAddMembers}>新增成員</Button>
+                          <Button color="danger" onClick={this.handleDeleteMembers}>刪除成員</Button>
+                          <Button color="secondary" onClick={this.handle_addmemberbutton_toggle}>取消</Button>
                       </ModalFooter>
                   </Modal>
               </div>

@@ -42,7 +42,8 @@ export function grouplist(state = initGrouplistState, action) {
 
 const initGroupItemState = {
     addmember_modal_Toggle: false,
-    Toggle_id: ''
+    Toggle_id: '',
+    groupitemloading: false
 
 };
 
@@ -50,9 +51,20 @@ export function groupitem(state = initGroupItemState, action) {
     switch (action.type) {
         case '@GROUPITEM/TOOGLE_ADDMEMBER_MODAL':
             return {
+                ...state,
                 addmember_modal_Toggle: !state.addmember_modal_Toggle,
                 Toggle_id: action.id
             };
+            case '@GROUPITEM/START_LOADING':
+                return {
+                    ...state,
+                      groupitemloading: true
+                };
+                case '@GROUPITEM/END_LOADING':
+                    return {
+                        ...state,
+                          groupitemloading: false
+                    };
 
         default:
             return state;
@@ -60,6 +72,7 @@ export function groupitem(state = initGroupItemState, action) {
 }
 
 const initChatRoomState = {
+    chatroomloading: false,
     group:{},
     chats: []
 
@@ -76,8 +89,19 @@ export function chatroom(state = initChatRoomState, action) {
         case '@CHATROOM/GET_CHATS':
             return {
                 ...state,
-                chats: action.chats
+                chats: action.chats,
+                chatroomloading: false
             };
+            case '@CHATROOM/START_LOADING':
+                return {
+                    ...state,
+                    chatroomloading: true
+                };
+                case '@CHATROOM/END_LOADING':
+                    return {
+                        ...state,
+                        chatroomloading: false
+                    };
             case '@CHATROOM/CLEAR_CHATS':
                 return {
                     ...state,
@@ -89,7 +113,8 @@ export function chatroom(state = initChatRoomState, action) {
 }
 
 const initChatRoomHIDState = {
-    chats_hid: []
+    chats_hid: [],
+    chatroom_hidloading: false
 
 
 };
@@ -106,6 +131,16 @@ export function chatroom_hid(state = initChatRoomHIDState, action) {
                     ...state,
                     chats_hid: []
                 };
+                case '@CHATROOM_HID/START_LOADING':
+                    return {
+                        ...state,
+                        chatroom_hidloading: true
+                    };
+                    case '@CHATROOM_HID/END_LOADING':
+                        return {
+                            ...state,
+                            chatroom_hidloading: false
+                        };
         default:
             return state;
     }
@@ -114,7 +149,8 @@ export function chatroom_hid(state = initChatRoomHIDState, action) {
 const initChatListState = {
 
     hiddenchatroom_open: false,
-    username_login: 'wow'
+    username_login: '哇',
+    chatlist_loading: false
 
 };
 
@@ -130,6 +166,16 @@ export function chatlist(state = initChatListState, action) {
               ...state,
               hiddenchatroom_open: false
             };
+            case '@CHATLIST/START_LOADING':
+                return {
+                    ...state,
+                    chatlist_loading: true
+                };
+                case '@CHATLIST/END_LOADING':
+                    return {
+                        ...state,
+                        chatlist_loading: false
+                    };
         default:
             return state;
     }

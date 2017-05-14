@@ -11,10 +11,19 @@
   border-radius: 0.5rem;
   text-align: right!important;
 }
-
+.chat-text-me:hover {
+  background-color: rgb(204, 194, 240);
+  border: 0.5rem solid rgb(204, 194, 240);
+  cursor: pointer;
+}
+.chat-text-other:hover {
+  background-color: rgb(204, 194, 240);
+  border: 0.5rem solid rgb(204, 194, 240);
+  cursor: pointer;
+}
 .chat-username-other {
-  background-color: rgb(62, 215, 69);
-  border: 0.5rem solid rgb(62, 215, 69);
+  background-color: lightblue;
+  border: 0.5rem solid lightblue;
   border-radius: 0.5rem;
   color: white!important;
   height: 2rem!important;
@@ -25,4 +34,12 @@
   border-radius: 0.5rem;
   color: white!important;
   height: 2rem!important;
+}
+.chat-username-me:hover {
+  cursor:pointer;
+}
+.chat-username-other:hover {
+  cursor:pointer;
+  background-color: rgb(47, 133, 235);
+  border: 0.5rem solid rgb(47, 133, 235);
 }

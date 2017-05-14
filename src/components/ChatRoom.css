@@ -25,7 +25,7 @@
 .chat-list {
   border:0.05rem solid lightgray;
   border-radius: 0.5rem;
-  height:28rem!important;
+  height:26rem!important;
   overflow-x:hidden;
   overflow-y:auto;
   word-wrap:break-word;
