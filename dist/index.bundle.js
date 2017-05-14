@@ -5258,7 +5258,16 @@ function updateLink(linkElement, options, obj) {
 /* 23 */,
 /* 24 */,
 /* 25 */,
-/* 26 */
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5349,15 +5358,6 @@ var _Mathround=Math.round,_Mathmin=Math.min,_Mathmax=Math.max;var commonjsGlobal
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(43)))
 
 /***/ }),
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
 /* 36 */,
 /* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -17659,7 +17659,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = __webpack_require__(14);
 var ReactTransitionChildMapping = __webpack_require__(397);
 
-var propTypesFactory = __webpack_require__(32);
+var propTypesFactory = __webpack_require__(31);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var emptyFunction = __webpack_require__(10);
@@ -19430,8 +19430,6 @@ var ChatItem = function (_React$Component) {
                 flex = 'd-flex flex-row-reverse';
             }
 
-            text_style = text_style.concat(' ', this.handle_string_length());
-
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: flex },
@@ -19443,7 +19441,7 @@ var ChatItem = function (_React$Component) {
                 ' ',
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { title: TimeString, className: text_style },
+                    { title: TimeString, className: text_style, style: { width: this.handle_string_length() } },
                     text
                 )
             );
@@ -19466,12 +19464,10 @@ var ChatItem = function (_React$Component) {
             var text = this.props.text;
 
 
-            if (text.length < 5) {
-                return 's1';
-            } else if (text.length < 10) {
-                return 's2';
+            if (text.length < 30) {
+                return text.length + 1 + 'rem';
             } else {
-                return 's3';
+                return '60%';
             }
         }
     }]);
@@ -19554,7 +19550,6 @@ var ChatItem_HID = function (_React$Component) {
                 username_style = 'chat-username-me m-2';
                 flex = 'd-flex flex-row-reverse';
             }
-            text_style = text_style.concat(' ', this.handle_string_length());
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -19567,7 +19562,7 @@ var ChatItem_HID = function (_React$Component) {
                 ' ',
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { title: TimeString, className: text_style },
+                    { title: TimeString, className: text_style, style: { width: this.handle_string_length() } },
                     text
                 )
             );
@@ -19590,12 +19585,10 @@ var ChatItem_HID = function (_React$Component) {
             var text = this.props.text;
 
 
-            if (text.length < 5) {
-                return 's1';
-            } else if (text.length < 10) {
-                return 's2';
+            if (text.length < 30) {
+                return text.length + 1 + 'rem';
             } else {
-                return 's3';
+                return '60%';
             }
         }
     }]);
@@ -19623,7 +19616,7 @@ ChatItem_HID.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_reactstrap__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_reactstrap__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_components_GroupList_jsx__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_components_ChatRoom_jsx__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_components_ChatRoom_HID_jsx__ = __webpack_require__(263);
@@ -19740,14 +19733,16 @@ ChatList.propTypes = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_reactstrap__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_components_ChatItem_jsx__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_states_group_actions_js__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ChatRoom_css__ = __webpack_require__(410);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ChatRoom_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__ChatRoom_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_reactstrap__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_components_ChatItem_jsx__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_states_group_actions_js__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ChatRoom_css__ = __webpack_require__(410);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ChatRoom_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__ChatRoom_css__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -19757,6 +19752,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -19778,11 +19774,21 @@ var ChatRoom = function (_React$Component) {
 
         _this.handle_chat_submit = _this.handle_chat_submit.bind(_this);
         _this.handleSearchKeyPress = _this.handleSearchKeyPress.bind(_this);
-
+        _this.scrollToBottom = _this.scrollToBottom.bind(_this);
         return _this;
     }
 
     _createClass(ChatRoom, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.scrollToBottom();
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            this.scrollToBottom();
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
@@ -19807,7 +19813,7 @@ var ChatRoom = function (_React$Component) {
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { key: p.id, action: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_components_ChatItem_jsx__["a" /* default */], p)
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_components_ChatItem_jsx__["a" /* default */], p)
                     );
                 });
             }
@@ -19853,21 +19859,28 @@ var ChatRoom = function (_React$Component) {
                     { className: 'chat-list mt-2' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        null,
+                        { className: 'd-flex flex-column-reverse' },
                         children
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { ref: function ref(el) {
+                                _this2.messagesEnd = el;
+                            } },
+                        ''
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        __WEBPACK_IMPORTED_MODULE_3_reactstrap__["c" /* InputGroup */],
+                        __WEBPACK_IMPORTED_MODULE_4_reactstrap__["c" /* InputGroup */],
                         null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_reactstrap__["d" /* Input */], { type: 'text', getRef: function getRef(e) {
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_reactstrap__["d" /* Input */], { type: 'text', getRef: function getRef(e) {
                                 return _this2.chatEL = e;
                             }, onKeyPress: this.handleSearchKeyPress, placeholder: 'Say Something  <Use \'@\' to open/close the dicussion room>' }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            __WEBPACK_IMPORTED_MODULE_3_reactstrap__["e" /* Button */],
+                            __WEBPACK_IMPORTED_MODULE_4_reactstrap__["e" /* Button */],
                             { color: 'info', onClick: this.handle_chat_submit },
                             'Submit'
                         )
@@ -19879,17 +19892,17 @@ var ChatRoom = function (_React$Component) {
         key: 'handle_chat_submit',
         value: function handle_chat_submit() {
             if (this.chatEL.value === '@' && this.props.hiddenchatroom_open) {
-                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_states_group_actions_js__["b" /* closeHiddenChatroom */])());
+                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_states_group_actions_js__["b" /* closeHiddenChatroom */])());
                 this.chatEL.value = '';
             } else if (this.chatEL.value === '@' && !this.props.hiddenchatroom_open) {
-                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_states_group_actions_js__["c" /* changeHiddenChatroom */])(this.props.group, ""));
+                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_states_group_actions_js__["c" /* changeHiddenChatroom */])(this.props.group, ""));
                 this.chatEL.value = '@';
             } else if (this.chatEL.value.match(/^@/)) {
                 var string_input = this.chatEL.value.replace(/^@/, '');
-                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_states_group_actions_js__["d" /* createChat_hid */])(this.props.group.id, this.props.username_login, string_input));
+                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_states_group_actions_js__["d" /* createChat_hid */])(this.props.group.id, this.props.username_login, string_input));
                 this.chatEL.value = '@';
             } else if (this.chatEL.value) {
-                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_states_group_actions_js__["e" /* createChat */])(this.props.group.id, this.props.username_login, this.chatEL.value));
+                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_states_group_actions_js__["e" /* createChat */])(this.props.group.id, this.props.username_login, this.chatEL.value));
                 this.chatEL.value = '';
             } else {}
         }
@@ -19901,21 +19914,27 @@ var ChatRoom = function (_React$Component) {
                 this.handle_chat_submit();
             }
         }
+    }, {
+        key: 'scrollToBottom',
+        value: function scrollToBottom() {
+            var node = __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.findDOMNode(this.messagesEnd);
+            node.scrollIntoView();
+        }
     }]);
 
     return ChatRoom;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 ChatRoom.propTypes = {
-    chats: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.array,
-    hiddenchatroom_open: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
-    username_login: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
-    dispatch: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func
+    chats: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.array,
+    hiddenchatroom_open: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.bool,
+    username_login: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.string,
+    dispatch: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.func
 
 };
 
 
-/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(function (state) {
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(function (state) {
     return _extends({}, state.chatroom, state.chatlist);
 })(ChatRoom));
 
@@ -19929,7 +19948,7 @@ ChatRoom.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_reactstrap__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_reactstrap__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_components_ChatItem_HID_jsx__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ChatRoom_HID_css__ = __webpack_require__(411);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ChatRoom_HID_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__ChatRoom_HID_css__);
@@ -20028,7 +20047,7 @@ ChatRoom_HID.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_reactstrap__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_reactstrap__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_states_group_actions_js__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(0);
@@ -20241,7 +20260,7 @@ GroupItem.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_reactstrap__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_reactstrap__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_redux__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_states_group_actions_js__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_components_GroupItem_jsx__ = __webpack_require__(264);
@@ -22547,7 +22566,7 @@ exports = module.exports = __webpack_require__(17)(undefined);
 
 
 // module
-exports.push([module.i, ".s1{\r\n    width: 5rem;\r\n}\r\n.s2 {\r\n    width: 10rem;\r\n}\r\n.s3{\r\n    width: 60%;\r\n}\r\n\r\n\r\n.chat-text-other {\r\n  background-color: rgb(228, 231, 247);\r\n  border: 0.5rem solid rgb(228, 231, 247);\r\n  border-radius: 0.5rem;\r\n}\r\n\r\n.chat-text-me {\r\n  background-color: rgb(228, 231, 247);\r\n  border: 0.5rem solid rgb(228, 231, 247);\r\n  border-radius: 0.5rem;\r\n  text-align: right!important;\r\n}\r\n\r\n.chat-username-other {\r\n  background-color: rgb(62, 215, 69);\r\n  border: 0.5rem solid rgb(62, 215, 69);\r\n  border-radius: 0.5rem;\r\n  color: white!important;\r\n  height: 2rem!important;\r\n}\r\n.chat-username-me {\r\n  background-color: rgb(247, 107, 88);\r\n  border: 0.5rem solid rgb(247, 107, 88);\r\n  border-radius: 0.5rem;\r\n  color: white!important;\r\n  height: 2rem!important;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n\r\n\r\n.chat-text-other {\r\n  background-color: rgb(228, 231, 247);\r\n  border: 0.5rem solid rgb(228, 231, 247);\r\n  border-radius: 0.5rem;\r\n}\r\n\r\n.chat-text-me {\r\n  background-color: rgb(228, 231, 247);\r\n  border: 0.5rem solid rgb(228, 231, 247);\r\n  border-radius: 0.5rem;\r\n  text-align: right!important;\r\n}\r\n\r\n.chat-username-other {\r\n  background-color: rgb(62, 215, 69);\r\n  border: 0.5rem solid rgb(62, 215, 69);\r\n  border-radius: 0.5rem;\r\n  color: white!important;\r\n  height: 2rem!important;\r\n}\r\n.chat-username-me {\r\n  background-color: rgb(247, 107, 88);\r\n  border: 0.5rem solid rgb(247, 107, 88);\r\n  border-radius: 0.5rem;\r\n  color: white!important;\r\n  height: 2rem!important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -22561,7 +22580,7 @@ exports = module.exports = __webpack_require__(17)(undefined);
 
 
 // module
-exports.push([module.i, ".s1{\r\n    width: 4rem;\r\n}\r\n.s2 {\r\n    width: 9rem;\r\n}\r\n.s3{\r\n    width: 60%;\r\n}\r\n.chat-text-other {\r\n  background-color: rgb(228, 231, 247);\r\n  border: 0.5rem solid rgb(228, 231, 247);\r\n  border-radius: 0.5rem;\r\n}\r\n\r\n.chat-text-me {\r\n  background-color: rgb(228, 231, 247);\r\n  border: 0.5rem solid rgb(228, 231, 247);\r\n  border-radius: 0.5rem;\r\n  text-align: right!important;\r\n}\r\n\r\n.chat-username-other {\r\n  background-color: rgb(62, 215, 69);\r\n  border: 0.5rem solid rgb(62, 215, 69);\r\n  border-radius: 0.5rem;\r\n  color: white!important;\r\n  height: 2rem!important;\r\n}\r\n.chat-username-me {\r\n  background-color: rgb(247, 107, 88);\r\n  border: 0.5rem solid rgb(247, 107, 88);\r\n  border-radius: 0.5rem;\r\n  color: white!important;\r\n  height: 2rem!important;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n.chat-text-other {\r\n  background-color: rgb(228, 231, 247);\r\n  border: 0.5rem solid rgb(228, 231, 247);\r\n  border-radius: 0.5rem;\r\n}\r\n\r\n.chat-text-me {\r\n  background-color: rgb(228, 231, 247);\r\n  border: 0.5rem solid rgb(228, 231, 247);\r\n  border-radius: 0.5rem;\r\n  text-align: right!important;\r\n}\r\n\r\n.chat-username-other {\r\n  background-color: rgb(62, 215, 69);\r\n  border: 0.5rem solid rgb(62, 215, 69);\r\n  border-radius: 0.5rem;\r\n  color: white!important;\r\n  height: 2rem!important;\r\n}\r\n.chat-username-me {\r\n  background-color: rgb(247, 107, 88);\r\n  border: 0.5rem solid rgb(247, 107, 88);\r\n  border-radius: 0.5rem;\r\n  color: white!important;\r\n  height: 2rem!important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -22589,7 +22608,7 @@ exports = module.exports = __webpack_require__(17)(undefined);
 
 
 // module
-exports.push([module.i, ".group-members {\r\n  background-color: lightblue;\r\n  color: white!important;\r\n  padding: 0.5rem;\r\n  border: 0.2rem solid white;\r\n  border-radius: 0.5rem;\r\n}\r\n\r\n.group-members:hover {\r\n  background-color: rgb(47, 133, 235);\r\n}\r\n\r\n.group-member {\r\n  background-color: rgb(245, 174, 116);\r\n  color: white!important;\r\n  padding: 0.5rem;\r\n  border: 0.2rem solid white;\r\n  border-radius: 0.5rem;\r\n}\r\n\r\n.group-member:hover {\r\n   background-color: rgb(242, 192, 12);\r\n   cursor: pointer;\r\n}\r\n.chat-list {\r\n  border:0.05rem solid lightgray;\r\n  border-radius: 0.5rem;\r\n  height:28rem!important;\r\n  overflow: auto;\r\n  word-wrap:break-word;\r\n}\r\n\r\n/* Scrollbar styles */\r\n::-webkit-scrollbar {\r\nwidth: 12px;\r\nheight: 12px;\r\n}\r\n\r\n::-webkit-scrollbar-track {\r\nborder: 1px solid lightgray;\r\nborder-radius: 10px;\r\n}\r\n\r\n::-webkit-scrollbar-thumb {\r\nbackground: lightgray;\r\nborder-radius: 10px;\r\n}\r\n\r\n::-webkit-scrollbar-thumb:hover {\r\nbackground: lightgray;\r\n}\r\n", ""]);
+exports.push([module.i, ".group-members {\r\n  background-color: lightblue;\r\n  color: white!important;\r\n  padding: 0.5rem;\r\n  border: 0.2rem solid white;\r\n  border-radius: 0.5rem;\r\n}\r\n\r\n.group-members:hover {\r\n  background-color: rgb(47, 133, 235);\r\n}\r\n\r\n.group-member {\r\n  background-color: rgb(245, 174, 116);\r\n  color: white!important;\r\n  padding: 0.5rem;\r\n  border: 0.2rem solid white;\r\n  border-radius: 0.5rem;\r\n}\r\n\r\n.group-member:hover {\r\n   background-color: rgb(242, 192, 12);\r\n   cursor: pointer;\r\n}\r\n.chat-list {\r\n  border:0.05rem solid lightgray;\r\n  border-radius: 0.5rem;\r\n  height:28rem!important;\r\n  overflow-x:hidden;\r\n  overflow-y:auto;\r\n  word-wrap:break-word;\r\n}\r\n\r\n/* Scrollbar styles */\r\n::-webkit-scrollbar {\r\nwidth: 12px;\r\nheight: 12px;\r\n}\r\n\r\n::-webkit-scrollbar-track {\r\nborder: 1px solid lightgray;\r\nborder-radius: 10px;\r\n}\r\n\r\n::-webkit-scrollbar-thumb {\r\nbackground: lightgray;\r\nborder-radius: 10px;\r\n}\r\n\r\n::-webkit-scrollbar-thumb:hover {\r\nbackground: lightgray;\r\n}\r\n", ""]);
 
 // exports
 
@@ -22631,7 +22650,7 @@ exports = module.exports = __webpack_require__(17)(undefined);
 
 
 // module
-exports.push([module.i, ".group-list {\r\n  height:30rem!important;\r\n  overflow: auto;\r\n}\r\n", ""]);
+exports.push([module.i, ".group-list {\r\n  height:30rem!important;\r\n  overflow-x:hidden;\r\n  overflow-y:auto;\r\n}\r\n", ""]);
 
 // exports
 
@@ -24219,7 +24238,7 @@ var ReactReconciler = __webpack_require__(23);
 var ReactReconcileTransaction = __webpack_require__(208);
 var ReactUpdates = __webpack_require__(13);
 
-var emptyObject = __webpack_require__(27);
+var emptyObject = __webpack_require__(26);
 var getNextDebugID = __webpack_require__(230);
 var invariant = __webpack_require__(2);
 
@@ -24368,14 +24387,14 @@ var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
 var EventConstants = __webpack_require__(319);
-var EventPluginHub = __webpack_require__(29);
-var EventPluginRegistry = __webpack_require__(33);
-var EventPropagators = __webpack_require__(30);
+var EventPluginHub = __webpack_require__(28);
+var EventPluginRegistry = __webpack_require__(32);
+var EventPropagators = __webpack_require__(29);
 var React = __webpack_require__(14);
 var ReactDOM = __webpack_require__(53);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactBrowserEventEmitter = __webpack_require__(34);
-var ReactInstanceMap = __webpack_require__(31);
+var ReactBrowserEventEmitter = __webpack_require__(33);
+var ReactInstanceMap = __webpack_require__(30);
 var ReactUpdates = __webpack_require__(13);
 var SyntheticEvent = __webpack_require__(15);
 var ReactShallowRenderer = __webpack_require__(353);
@@ -25447,7 +25466,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = __webpack_require__(14);
-var propTypesFactory = __webpack_require__(32);
+var propTypesFactory = __webpack_require__(31);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var ReactTransitionGroup = __webpack_require__(228);
@@ -25559,7 +25578,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = __webpack_require__(14);
 var ReactAddonsDOMDependencies = __webpack_require__(388);
 
-var propTypesFactory = __webpack_require__(32);
+var propTypesFactory = __webpack_require__(31);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var CSSCore = __webpack_require__(280);

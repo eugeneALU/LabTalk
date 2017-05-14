@@ -26,7 +26,8 @@
   border:0.05rem solid lightgray;
   border-radius: 0.5rem;
   height:28rem!important;
-  overflow: auto;
+  overflow-x:hidden;
+  overflow-y:auto;
   word-wrap:break-word;
 }
 

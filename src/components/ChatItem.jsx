@@ -39,12 +39,12 @@ class ChatItem extends React.Component {
         flex = 'd-flex flex-row-reverse';
       }
 
-      text_style = text_style.concat(' ',this.handle_string_length());
+
 
 
       return(
       <div className={flex}>
-      <a className={username_style}>{username_display}</a>{' '}<div title={TimeString} className={text_style}>{text}</div>
+      <a className={username_style}>{username_display}</a>{' '}<div title={TimeString} className={text_style} style={{width:this.handle_string_length()}}>{text}</div>
       </div>
       );
     }
@@ -62,16 +62,14 @@ class ChatItem extends React.Component {
     handle_string_length(){
       const {text} = this.props;
 
-      if (text.length < 5){
-        return 's1';
-      }
-      else if (text.length < 10){
-        return 's2';
+      if (text.length < 30){
+        return `${text.length+1}rem`;
       }
       else{
-        return 's3';
+        return '60%';
       }
     }
+
 }
 
 export default connect((state) => {

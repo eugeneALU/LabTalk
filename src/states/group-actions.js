@@ -12,6 +12,7 @@ import {
    listChats as listChatsFromApi
 } from 'api/chat.js'
 
+
 export function toggleAddGroupModal() {
     return {
         type: '@GROUPLIST/TOOGLE_ADDGROUP_MODAL'

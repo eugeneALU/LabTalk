@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -26,9 +27,17 @@ class ChatRoom extends React.Component {
         super(props);
         this.handle_chat_submit = this.handle_chat_submit.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
-
+        this.scrollToBottom = this.scrollToBottom.bind(this);
     }
 
+    componentDidMount(){
+      this.scrollToBottom();
+
+    }
+  componentDidUpdate() {
+    this.scrollToBottom();
+
+  }
     render() {
       const {chats, dispatch, group} = this.props;
 
@@ -66,7 +75,8 @@ class ChatRoom extends React.Component {
         <center><h1>{groupname}</h1></center>
         <div><a className="group-member mt-1">Members</a>{members}</div><br/>
         <div className='chat-list mt-2'>
-              <div>{children}</div>
+              <div className="d-flex flex-column-reverse">{children}</div>
+              <div ref={(el) => { this.messagesEnd = el; }}>{''}</div>
         </div>
         <div>
           <InputGroup>
@@ -112,6 +122,10 @@ class ChatRoom extends React.Component {
 
     }
 
+    scrollToBottom(){
+        const node = ReactDOM.findDOMNode(this.messagesEnd);
+        node.scrollIntoView();
+    }
 
 
 }
