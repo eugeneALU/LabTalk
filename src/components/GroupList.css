@@ -1,8 +1,46 @@
+
+.listtitle {
+    background-color: #F58B00;
+    margin: 0;
+}
+
+.list {
+    background-color: #FFBD67;
+    height: 91vh;
+}
+
+#listicon {
+    width:2rem;
+}
+
+#listtxt {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+
+
+#li {
+    margin: 0.5rem auto !important;
+    display: block !important;
+    cursor: pointer;
+}
+
+.empty {
+    margin: 0.5rem auto !important;
+    display: block !important;
+}
+
+#li:hover {
+    background-color: #F58B00 !important;
+    border-color: white;
+    color: white!important;
+}
+
 .group-list {
-  height:30rem!important;
   overflow-x:hidden;
   overflow-y:auto;
-}
-.grouplist-loading{
-  /*background-image: url('./image/loading.png');*/
 }

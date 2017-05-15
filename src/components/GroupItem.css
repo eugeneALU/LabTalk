@@ -1,33 +1,23 @@
 .group-members {
-  background-color: lightblue;
-  color: white!important;
+  background-color: rgb(47, 133, 235)!important;
   padding: 0.5rem;
   border: 0.2rem solid white;
   border-radius: 0.5rem;
 }
 
 .group-members:hover {
-  background-color: rgb(47, 133, 235);
+  cursor: pointer;
 }
-
 .group-member {
-  background-color: rgb(245, 174, 116);
-  color: white!important;
+  background-color: orange!important;
+  color: white;
   padding: 0.5rem;
   border: 0.2rem solid white;
   border-radius: 0.5rem;
 }
 
-.group-title-select {
-    color: red;
-}
-.group-member:hover {
-   background-color: rgb(242, 192, 12);
-   cursor: pointer;
-}
-.group-item-loading {
-  background-image: url('./image/loading.png');
-}
-.group-item:hover {
-  cursor: pointer;
+
+
+.group-titleselect {
+    color: orange;
 }

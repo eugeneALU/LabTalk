@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import {connect} from 'react-redux';
-
-
-
 import './ChatItem.css';
 
 class ChatItem extends React.Component {
@@ -32,6 +28,7 @@ class ChatItem extends React.Component {
       let flex = 'd-flex flex-row';
       let username_style = 'chat-username-other m-2';
       let text_style = 'chat-text-other m-2';
+
       if(username === username_login){
         username_display = '我';
         text_style = 'chat-text-me m-2';
@@ -39,13 +36,10 @@ class ChatItem extends React.Component {
         flex = 'd-flex flex-row-reverse';
       }
 
-
-
-
       return(
-      <div className={flex}>
-      <a className={username_style}>{username_display}</a>{' '}<div title={TimeString} className={text_style} style={{width:this.handle_string_length()}}>{text}</div>
-      </div>
+        <div className={flex}>
+        <a className={username_style}>{username_display}</a>{' '}<div title={TimeString} className={text_style} style={{width:this.handle_string_length()}}>{text}</div>
+        </div>
       );
     }
 

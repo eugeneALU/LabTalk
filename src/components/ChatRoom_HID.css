@@ -1,11 +1,7 @@
 .chat-list-hid {
-  border:0.05rem solid lightgray;
-  border-radius: 0.5rem;
-  height: 35rem!important;
+  height: 91.2vh!important;
+  width: 17vw;
   overflow: auto;
   word-wrap:break-word;
-}
-
-.chat-list-hid-loading {
-  /*background-image: url('./image/loading.png');*/
+  border-left: 1px solid lightgray;
 }

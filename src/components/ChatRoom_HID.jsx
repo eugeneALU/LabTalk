@@ -9,7 +9,7 @@ import {
     Button
 } from 'reactstrap';
 import ChatItem_HID from 'components/ChatItem_HID.jsx';
-import {listChats_hid} from 'states/group-actions.js'
+
 
 import './ChatRoom_HID.css';
 
@@ -18,7 +18,6 @@ class ChatRoom_HID extends React.Component {
   static propTypes = {
       chatroom_id: PropTypes.string,
       chats_hid: PropTypes.array,
-      chatroom_hidloading: PropTypes.bool,
       dispatch: PropTypes.func
 
   };
@@ -26,7 +25,7 @@ class ChatRoom_HID extends React.Component {
         super(props);
 
         this.state = {
-          intervalId : {}
+            intervalId: {}
         };
 
         this.scrollToBottom = this.scrollToBottom.bind(this);
@@ -34,28 +33,32 @@ class ChatRoom_HID extends React.Component {
         this.timer = this.timer.bind(this);
 
     }
-    componentDidMount(){
-      this.scrollToBottom();
-      this.inittimer();
+    componentDidMount() {
+          this.inittimer();
 
-    }
-  componentDidUpdate() {
-    this.scrollToBottom();
+      }
+      componentWillUnMount() {
+          clearInterval(this.state.intervalId);
+      }
+      shouldComponentUpdate(nextProps, nextState) {
+          if (nextProps.chats_hid.length !== this.props.chats_hid.length) {
+              return true;
+          } else {
+              return false;
+          }
+      }
+      componentDidUpdate() {
+          this.scrollToBottom();
 
-  }
-  componentWillMount(){
-    clearInterval(this.state.intervalId);
-  }
+      }
     render() {
-      const {chats_hid, chatroom_hidloading} = this.props;
-
+      const {chats_hid} = this.props;
       let children = (
           <div className='empty d-flex justify-content-center align-items-center' >
               <div className='empty-text'>尚未有任何對話...</div>
           </div>
 
       );
-
       if (chats_hid.length) {
         children = chats_hid.map(p => (
             <div key={p.id} action>
@@ -63,17 +66,9 @@ class ChatRoom_HID extends React.Component {
             </div>
         ));
       }
-
-      let loading = '';
-
-      if(chatroom_hidloading){
-          loading = '-loading';
-      }
-
       return(
-        <div>
-        <h1>討論室</h1>
-          <div className={`chat-list-hid${loading}`}>
+        <div className="ml-auto">
+          <div className='chat-list-hid'>
                 <div className="d-flex flex-column-reverse">{children}</div>
                 <div ref={(el) => { this.messagesEnd = el; }}>{''}</div>
           </div>
@@ -81,22 +76,22 @@ class ChatRoom_HID extends React.Component {
       );
     }
 
-    scrollToBottom(){
-        const node = ReactDOM.findDOMNode(this.messagesEnd);
-        node.scrollIntoView();
-    }
-
-    inittimer(){
-      var intervalId = setInterval(this.timer, 3000);
-      this.setState({intervalId: intervalId});
-    }
-
-    timer(){
-      const{group, dispatch} = this.props;
-      if(group.id){
-        dispatch(listChats_hid(group.id, ''));
+    scrollToBottom() {
+          const node = ReactDOM.findDOMNode(this.messagesEnd);
+          node.scrollIntoView();
       }
-    }
+
+      inittimer() {
+          var intervalId = setInterval(this.timer, 3000);
+          this.setState({intervalId: intervalId});
+      }
+
+      timer() {
+          const {group, dispatch} = this.props;
+          if (group.id) {
+              dispatch(listChats_hid(group.id, ''));
+          }
+      }
 
 
 }

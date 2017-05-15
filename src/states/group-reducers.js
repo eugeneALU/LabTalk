@@ -74,9 +74,7 @@ export function groupitem(state = initGroupItemState, action) {
 const initChatRoomState = {
     chatroomloading: false,
     group:{},
-    chats: []
-
-
+    chats: [],
 };
 
 export function chatroom(state = initChatRoomState, action) {
@@ -92,22 +90,21 @@ export function chatroom(state = initChatRoomState, action) {
                 chats: action.chats,
                 chatroomloading: false
             };
-            case '@CHATROOM/START_LOADING':
-                return {
-                    ...state,
-                    chatroomloading: true
-                };
-                case '@CHATROOM/END_LOADING':
-                    return {
-                        ...state,
-                        chatroomloading: false
-                    };
-            case '@CHATROOM/CLEAR_CHATS':
-                return {
-                    ...state,
-                    group:{},
-                    chats: []
-                };
+         case '@CHATROOM/START_LOADING':
+            return {
+                ...state,
+                chatroomloading: true
+            };
+          case '@CHATROOM/END_LOADING':
+               return {
+                  ...state,
+                 chatroomloading: false
+             };
+          case '@CHATROOM/CLEAR_CHATS':
+               return {
+                   ...state,
+                   chats: []
+               };
         default:
             return state;
     }
@@ -116,8 +113,6 @@ export function chatroom(state = initChatRoomState, action) {
 const initChatRoomHIDState = {
     chats_hid: [],
     chatroom_hidloading: false
-
-
 };
 
 export function chatroom_hid(state = initChatRoomHIDState, action) {
@@ -125,8 +120,7 @@ export function chatroom_hid(state = initChatRoomHIDState, action) {
         case '@CHATROOM_HID/GET_CHATS':
             return {
                 ...state,
-                chats_hid: action.chats,
-                chatroom_hidloading: false
+                chats_hid: action.chats
             };
             case '@CHATROOM_HID/CLEAR_CHATS':
                 return {
@@ -151,8 +145,8 @@ export function chatroom_hid(state = initChatRoomHIDState, action) {
 const initChatListState = {
 
     hiddenchatroom_open: false,
-    username_login: '哈哈',
-    chatlist_loading: false
+    chatlist_loading: false,
+    username_login: ''
 
 };
 
@@ -178,6 +172,11 @@ export function chatlist(state = initChatListState, action) {
                         ...state,
                         chatlist_loading: false
                     };
+                    case '@CHATLIST/USERNAME':
+                        return {
+                            ...state,
+                            username_login: action.username
+                        };
         default:
             return state;
     }

@@ -26,17 +26,6 @@ export function toggleAddMemberModal(id) {
     };
 }
 
-function startLoading_groupitem() {
-    return {
-        type: '@GROUPITEM/START_LOADING'
-    };
-}
-function endLoading_groupitem() {
-    return {
-        type: '@GROUPITEM/END_LOADING'
-    };
-}
-
 function startLoading_grouplist() {
     return {
         type: '@GROUPLIST/START_LOADING'
@@ -61,10 +50,10 @@ function endLoading_grouplist() {
     };
 }
 
-export function listGroups(searchText) {
+export function listGroups(searchText, username) {
     return (dispatch, getState) => {
       dispatch(startLoading_grouplist());
-      return listGroupsFromApi(searchText).then(groups => {
+      return listGroupsFromApi(searchText, username).then(groups => {
             dispatch(getGroups(groups));
         }).catch(err => {
             console.error('Error listing posts', err);
@@ -72,19 +61,24 @@ export function listGroups(searchText) {
     };
 }
 
-export function createGroup(name, username, searchText) {
+export function createGroup(name, username_login, searchText) {
     return (dispatch, getState) => {
-      return createGroupFromApi(name, username).then(group => {
-        dispatch(listGroups(searchText));
+      return createGroupFromApi(name,  username_login).then(group => {
+        dispatch(listGroups(searchText,  username_login));
     }).catch(err => {
         console.error('Error creating posts', err);
     });
   };
 }
 
+export function recordusername(username){
+  return {
+      type: '@CHATLIST/USERNAME',
+      username
+  };
+}
 
 function getGroups(groups) {
-    console.log(groups);
     return {
         type: '@GROUPLIST/GET_GROUPS',
         groups
@@ -93,36 +87,42 @@ function getGroups(groups) {
 export function addGroupUser(id, username){
 
 }
-export function deleteGroup(id, searchText) {
+export function deleteGroup(id, searchText, username) {
     return (dispatch, getState) => {
-      return deleteGroupFromApi(id).then(() => {
+      return deleteGroupFromApi(id, username).then(() => {
         dispatch(clearchats_hid());
         dispatch(clearchats());
-        dispatch(listGroups(searchText));
+        dispatch(listGroups(searchText, username));
     }).catch(err => {
         console.error('Error deleting posts', err);
     });
   };
 }
 
-export function addMembers(id, username) {
+export function addMembers(id, username, username_login) {
   return (dispatch, getState) => {
-    dispatch(startLoading_groupitem());
-    return addGroupMembersFromApi(id, username).then(() => {
-      dispatch(listGroups(''));
-      dispatch(endLoading_groupitem());
+    return addGroupMembersFromApi(id, username, username_login).then(groups => {
+      if(groups==='no_exist'){
+        alert("沒有此用戶名稱");
+      }
+      else{
+        dispatch(listGroups('',username_login));
+      }
   }).catch(err => {
       console.error('Error Username', err);
   });
 };
 }
 
-export function DeleteMembers(id, username) {
+export function DeleteMembers(id, username, username_login) {
   return (dispatch, getState) => {
-    dispatch(startLoading_groupitem());
-    return deleteGroupMembersFromApi(id, username).then(() => {
-      dispatch(listGroups(''));
-      dispatch(endLoading_groupitem());
+    return deleteGroupMembersFromApi(id, username, username_login).then(groups => {
+      if(groups==='no_exist'){
+        alert("沒有此用戶名稱");
+      }
+      else{
+        dispatch(listGroups('', username_login));
+      }
   }).catch(err => {
       console.error('Error Username', err);
   });
@@ -131,7 +131,6 @@ export function DeleteMembers(id, username) {
 
 export function listChats(id, searchText) {
     return (dispatch, getState) => {
-      dispatch(startLoading_chatroom());
       return listChatsFromApi(id ,searchText, false).then(chats => {
             dispatch(getChats(chats));
         }).catch(err => {
@@ -154,7 +153,6 @@ export function createChat(id, username, searchText) {
 
 export function listChats_hid(id, searchText) {
     return (dispatch, getState) => {
-      dispatch(startLoading_chatroom_hid());
       return listChatsFromApi(id ,searchText, true).then(chats => {
             dispatch(getChats_hid(chats));
         }).catch(err => {

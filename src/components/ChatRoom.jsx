@@ -1,6 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ChatRoom_HID from 'components/ChatRoom_HID.jsx';
+import Calendar from 'components/Calendar.jsx';
 import {connect} from 'react-redux';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {
     InputGroup,
@@ -9,21 +11,18 @@ import {
     Button
 } from 'reactstrap';
 
+import './ChatRoom.css';
 import ChatItem from 'components/ChatItem.jsx';
 import {createChat, changeHiddenChatroom, closeHiddenChatroom, createChat_hid, changeChatroom, listChats} from 'states/group-actions.js';
-
-import './ChatRoom.css';
-var update = '';
+import {toggle_Calendar} from 'states/calendar-actions.js';
 
 class ChatRoom extends React.Component {
-    static propTypes = {
+     static propTypes = {
         chats: PropTypes.array,
         hiddenchatroom_open: PropTypes.bool,
         username_login: PropTypes.string,
-        chatroomloading: PropTypes.bool,
         dispatch: PropTypes.func
-
-    };
+     }
 
     constructor(props) {
         super(props);
@@ -31,6 +30,7 @@ class ChatRoom extends React.Component {
         this.state = {
           intervalId : {}
         };
+        this.toggle = this.toggle.bind(this);
         this.handle_chat_submit = this.handle_chat_submit.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
@@ -39,25 +39,35 @@ class ChatRoom extends React.Component {
     }
 
     componentDidMount(){
-      this.scrollToBottom();
       this.inittimer();
 
     }
 
-    componentWillMount(){
+    componentWillUnMount(){
       clearInterval(this.state.intervalId);
     }
+    shouldComponentUpdate(nextProps, nextState){
+      if((nextProps.chats.length !== this.props.chats.length) || (nextProps.group.id != this.props.group.id)){
+        return true;
+      }
+      else if(nextProps.hiddenchatroom_open !== this.props.hiddenchatroom_open){
+        return true;
+      }
+      else if(nextProps.calendar !== this.props.calendar){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
 
-    componentWillReceiveProps(nextProps) {
-      if((nextProps.chats !== this.props.chats) || (nextProps.group !== this.props.group))
+    componentDidUpdate() {
         this.scrollToBottom();
     }
-    
-  render() {
-      const {chats, dispatch, group, username_login, chatroomloading} = this.props;
 
-
-      let children = (
+    render() {
+       const {chats, dispatch, group, username_login, hiddenchatroom_open, calendar} = this.props;
+       let children = (
           <div className='empty d-flex justify-content-center align-items-center' >
               <span className='empty-text'>尚未有任何對話...</span>
           </div>
@@ -72,40 +82,49 @@ class ChatRoom extends React.Component {
       }
 
       let members = '';
-      let groupname = group.name;
-/*      update = setTimeout(dispatch(listChats(group.id, '')),1000)*/
+      let groupname = group.name ? group.name : "LABTALK" ;
 
-        if(group.usernames) {
-          members = group.usernames.map(p => {
+      if(group.usernames) {
+         members = group.usernames.map(p => {
             if(p.username !== username_login)
-            return <a className="group-members ml-2" key={p.username+p.id}>{p.username}</a>
+              return <a className="group-members ml-2" key={p.username+p.id}>{p.username}</a>
           });
+      }
 
-        }
 
-        let loading = '';
-
-        if(chatroomloading){
-            loading = '-loading';
-        }
 
       return(
-        <div className={`chatroom${loading}`}>
-        <center><h1>{groupname}</h1></center>
-        <div><a className="group-member mt-1">成員</a>{members}</div><br/>
-        <div className='chat-list mt-2'>
-              <div className="d-flex flex-column-reverse">{children}</div>
-              <div ref={(el) => { this.messagesEnd = el; }}>{''}</div>
-        </div>
-        <div>
-          <InputGroup>
-            <Input type="text"  getRef={(e)=>(this.chatEL=e)} onKeyPress={this.handleSearchKeyPress} placeholder="輸入訊息...  <使用 @ 開啟/關閉內嵌討論室>"/>
-        </InputGroup>
+        <div className="d-flex flex-column">
+          <div className="d-flex flex-row">
+            <div className="roomtitle d-flex justify-content-center">
+              <p id="title">{groupname}</p>
+            </div>
+            <div className="Calendartitle d-flex justify-content-center">
+              <img onClick={this.toggle} id="Calendar_icon" src="./image/icon for Calendar/write-board-white.png"/>
+            </div>
+          </div>
+          <div className="d-flex justify-content-end">
 
+            <div className="chatroom mr-auto">
+              <div className='chat-list'>
+                  <div className="d-flex flex-column-reverse">{children}</div>
+                  <div ref={(el) => { this.messagesEnd = el; }}>{''}</div>
+              </div>
+              <div>
+                <InputGroup>
+                  <Input type="text"  getRef={(e)=>(this.chatEL=e)} onKeyPress={this.handleSearchKeyPress} placeholder="輸入訊息...  <使用 @ 開啟/關閉內嵌討論室>"/>
+                </InputGroup>
+              </div>
+            </div>
+            {this.props.hiddenchatroom_open ? <ChatRoom_HID /> : null}
+            {this.props.calendar ? <Calendar /> : null}
+          </div>
         </div>
+      )
+    }
 
-        </div>
-      );
+    toggle(){
+      this.props.dispatch(toggle_Calendar());
     }
 
     handle_chat_submit(){
@@ -131,13 +150,11 @@ class ChatRoom extends React.Component {
       }
     }
 
-      handleSearchKeyPress(e) {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13){
-            this.handle_chat_submit();
-        }
-
-
+    handleSearchKeyPress(e) {
+       var keyCode = e.keyCode || e.which;
+       if (keyCode === 13){
+           this.handle_chat_submit();
+       }
     }
 
     scrollToBottom(){
@@ -162,6 +179,7 @@ class ChatRoom extends React.Component {
 export default connect((state) => {
     return {
         ...state.chatroom,
-        ...state.chatlist
+        ...state.chatlist,
+        ...state.calendar
     };
 })(ChatRoom);

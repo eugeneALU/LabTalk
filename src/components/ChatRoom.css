@@ -1,38 +1,48 @@
-.group-members {
-  background-color: lightblue;
-  color: white!important;
-  padding: 0.5rem;
-  border: 0.2rem solid white;
-  border-radius: 0.5rem;
+
+.roomtitle {
+    background-color: #F58B00;
+    height: 8.8vh;
+    width:63vw
 }
 
-.group-members:hover {
-  background-color: rgb(47, 133, 235);
+.Calendartitle {
+    background-color: #F58B00;
+    height: 8.8vh;
+    width:17vw;
 }
 
-.group-member {
-  background-color: rgb(245, 174, 116);
-  color: white!important;
-  padding: 0.5rem;
-  border: 0.2rem solid white;
-  border-radius: 0.5rem;
+#title {
+    font-size: 5.9vh ;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    color:white;
 }
 
-.group-member:hover {
-   background-color: rgb(242, 192, 12);
-   cursor: pointer;
+#Calendar_icon {
+    height: 75%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
+
+
+
+
+
+
+.chatroom {
+  height: 91.2vh;
+  width: 60vw;
+}
+
 .chat-list {
-  border:0.05rem solid lightgray;
-  border-radius: 0.5rem;
-  height:26rem!important;
+  /*border:0.05rem solid lightgray;
+  border-radius: 0.5rem;*/
+  height: 90%;
   overflow-x:hidden;
   overflow-y:auto;
   word-wrap:break-word;
 }
-.chat-list-loading {
-  /*background-image: url('./image/loading.png');*/
-}
+
 /* Scrollbar styles */
 ::-webkit-scrollbar {
 width: 12px;

@@ -1,11 +1,15 @@
 import React from 'react';
-import ChatList from 'components/ChatList.jsx';
+import Page from 'components/Page.jsx';
 
 import './Main.css';
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {Provider} from 'react-redux';
+
+import {newAccount} from 'states/newAccount-reducers.js';
+import {logIn} from 'states/logIn-reducers.js';
 import {grouplist, groupitem, chatroom, chatlist, chatroom_hid} from 'states/group-reducers.js';
+import {calendar} from 'states/calendar-reducers.js';
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -21,18 +25,19 @@ export default class Main extends React.Component {
             groupitem,
             chatroom,
             chatlist,
-            chatroom_hid
+            chatroom_hid,
+            logIn,
+            newAccount,
+            calendar
         }), composeEnhancers(applyMiddleware(thunkMiddleware/*, loggerMiddleware*/)));
     }
 
-
-    render() {
-      return(
-        <div className="main">
-        <Provider store={this.store}>
-          <ChatList/>
-        </Provider>
-        </div>
-      );
+    render() { 
+        return(
+            <Provider store={this.store}>
+                <Page />
+            </Provider>
+        );
+           
     }
 }

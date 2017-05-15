@@ -1,11 +1,9 @@
-.labtalk {
-  font-weight: bolder;
+#grouplist {
+    width: 17vw;
+    height:100vh;
 }
-.lab{
-  color: orange;
-}
-.welcome-user{
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: lightgray;
+
+#chatroom {
+    width: 78vw;
+    height:100vh;
 }
