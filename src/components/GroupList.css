@@ -27,9 +27,23 @@
     margin: 0.5rem auto !important;
     box-shadow: 0px 3px 15px #000;
     display: block !important;
+    cursor: pointer;
+}
+
+.empty {
+    margin: 0.5rem auto !important;
+    display: block !important;
 }
 
 #li:hover {
     background-color: #F58B00 !important;
 }
 
+.group-list {
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+.grouplistloading{
+  background-color: black;
+}

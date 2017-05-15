@@ -24,6 +24,8 @@ class GroupList extends React.Component {
     static propTypes = {
         addgroup_modal_Toggle: PropTypes.bool,
         groups: PropTypes.array,
+        username_login: PropTypes.string,
+        groupLoading: PropTypes.bool,
         dispatch: PropTypes.func
     };
     constructor(props) {
@@ -34,10 +36,16 @@ class GroupList extends React.Component {
     }
 
     render() {
-        const {dispatch, addgroup_modal_Toggle, groups} = this.props;
+        const {dispatch, addgroup_modal_Toggle, groups, groupLoading} = this.props;
+        let loading = '';
+
+        if(groupLoading){
+            loading = 'loading';
+        }
+        
         let children = (
             <ListGroupItem className='empty d-flex justify-content-center align-items-center'>
-                <div className='empty-text'>No Group here.<br/>Create Group by clicking the button !</div>
+                <div className='empty-text'>無任何群組<br/>點擊下面按鈕創建群組</div>
             </ListGroupItem>
 
         );
@@ -51,51 +59,52 @@ class GroupList extends React.Component {
 
         return (
             <div>
-                <div className='group-list'>
+                <div className={`grouplist${loading}`}>
                     <center className="listtitle">
                         <img id="listicon" src="./image/icon for navbar/list.png"/>
-                        <p id="listtxt">Groups List</p>
+                        <p id="listtxt">群組列表</p>
                     </center>
                     <div className="list d-flex align-items-center flex-column">
-                        <div>
+                        <div className='group-list'>
                             <ListGroup>{children}</ListGroup>
                         </div>
                         <div className="ml-auto mr-auto mt-3">
-                            <Button className="listbutton" color="warning" onClick={this.handle_addgroupbutton_toggle}>Create Groups +</Button>
+                            <Button className="listbutton" color="warning" onClick={this.handle_addgroupbutton_toggle}>創建群組 +</Button>
                         </div>
                     </div>
                 </div>
                 <div>
                     <Modal isOpen={addgroup_modal_Toggle} toggle={this.handle_addgroupbutton_toggle}>
-                        <ModalHeader toggle={this.handle_addgroupbutton_toggle}>Create Group</ModalHeader>
+                        <ModalHeader toggle={this.handle_addgroupbutton_toggle}>創建群組</ModalHeader>
                         <ModalBody>
                             <div>
                               <InputGroup>
-                                <InputGroupAddon>Group Name</InputGroupAddon>
-                                <Input type="text"  getRef={(input)=>(this.input=input)} placeholder="Enter your Group Name"/>
+                                <InputGroupAddon>群組名稱</InputGroupAddon>
+                                <Input type="text"  getRef={(e)=>(this.groupnameEL=e)} placeholder="Enter your Group Name"/>
                               </InputGroup>
                             </div>
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="primary" onClick={this.handle_creategroup}>Create</Button>
-                            <Button color="secondary" onClick={this.handle_addgroupbutton_toggle}>Cancel</Button>
+                            <Button color="primary" onClick={this.handle_creategroup}>新增</Button>
+                            <Button color="secondary" onClick={this.handle_addgroupbutton_toggle}>取消</Button>
                         </ModalFooter>
                     </Modal>
                 </div>
             </div>
         );
-
     }
 
     handle_addgroupbutton_toggle() {
         this.props.dispatch(toggleAddGroupModal());
     }
     handle_creategroup(e) {
-      console.log(this.input.value);
-      this.props.dispatch(createGroup(this.input.value,''));
+       this.props.dispatch(createGroup(this.groupnameEL.value,this.props.username_login,''));
     }
 }
 
 export default connect((state) => {
-    return state.grouplist;
+    return {
+        ...state.grouplist,
+        ...state.chatlist
+    }
 })(GroupList);

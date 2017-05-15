@@ -5,16 +5,3 @@ html,body {
     margin: 0;
 }
 
-#leftnav {
-    background-color: black;
-    height: 100vh;
-    width: 5vw;
-}
-
-.navicon {
-    width: 70%;
-    display:block;
-    margin: auto;
-}
-
-
