@@ -24,7 +24,7 @@ class GroupItem extends React.Component {
         name: PropTypes.string,
         usernames: PropTypes.array,
         username_login: PropTypes.string,
-        chatroom_id: PropTypes.string,
+        groupitemloading: PropTypes.bool,
         dispatch: PropTypes.func
     };
 
@@ -38,7 +38,7 @@ class GroupItem extends React.Component {
     }
 
     render(){
-      const {dispatch, addmember_modal_Toggle, Toggle_id, id, usernames, group, username_login} = this.props;
+      const {dispatch, addmember_modal_Toggle, Toggle_id, id, usernames, group, username_login, groupitemloading} = this.props;
       let members = '';
 
       if(usernames.length) {
@@ -47,14 +47,21 @@ class GroupItem extends React.Component {
           return <a className="group-members ml-2" key={p.username+p.id}>{p.username}</a>
         });
       }
-      let select ='';
+      let select ='' ;
 
       if(group.id===id){
-        select = 'select';
+        select = '-select';
       }
 
+      let loading = '' ;
+      if(groupitemloading){
+        loading = '-loading' ;
+      }
+
+
+
       return(
-        <div className="group-item" >
+        <div className={`group-item${loading}`} >
         <div onClick={this.handleGroupClick} className="group-item justify-content-center align-items-center">
           <h4 className={`group-title${select}`}>{this.props.name}</h4>
           <div><Button className="ml-1" outline color="info" onClick={this.handle_addmemberbutton_toggle}>改變成員</Button><Button className="ml-2" outline color="danger" onClick={this.handleGroupDelete}>刪除群組</Button> </div>

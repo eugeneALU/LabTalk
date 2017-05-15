@@ -26,6 +26,17 @@ export function toggleAddMemberModal(id) {
     };
 }
 
+function startLoading_groupitem() {
+    return {
+        type: '@GROUPITEM/START_LOADING'
+    };
+}
+function endLoading_groupitem() {
+    return {
+        type: '@GROUPITEM/END_LOADING'
+    };
+}
+
 function startLoading_grouplist() {
     return {
         type: '@GROUPLIST/START_LOADING'
@@ -96,8 +107,10 @@ export function deleteGroup(id, searchText) {
 
 export function addMembers(id, username) {
   return (dispatch, getState) => {
+    dispatch(startLoading_groupitem());
     return addGroupMembersFromApi(id, username).then(() => {
       dispatch(listGroups(''));
+      dispatch(endLoading_groupitem());
   }).catch(err => {
       console.error('Error Username', err);
   });
@@ -106,8 +119,10 @@ export function addMembers(id, username) {
 
 export function DeleteMembers(id, username) {
   return (dispatch, getState) => {
+    dispatch(startLoading_groupitem());
     return deleteGroupMembersFromApi(id, username).then(() => {
       dispatch(listGroups(''));
+      dispatch(endLoading_groupitem());
   }).catch(err => {
       console.error('Error Username', err);
   });

@@ -20,26 +20,41 @@ class ChatRoom extends React.Component {
         chats: PropTypes.array,
         hiddenchatroom_open: PropTypes.bool,
         username_login: PropTypes.string,
+        chatroomloading: PropTypes.bool,
         dispatch: PropTypes.func
 
     };
+
     constructor(props) {
         super(props);
+
+        this.state = {
+          intervalId : {}
+        };
         this.handle_chat_submit = this.handle_chat_submit.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
+        this.inittimer = this.inittimer.bind(this);
+        this.timer = this.timer.bind(this);
     }
 
     componentDidMount(){
       this.scrollToBottom();
+      this.inittimer();
 
     }
-    componentDidUpdate() {
-      this.scrollToBottom();
 
-  }
-    render() {
-      const {chats, dispatch, group, username_login} = this.props;
+    componentWillMount(){
+      clearInterval(this.state.intervalId);
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if((nextProps.chats !== this.props.chats) || (nextProps.group !== this.props.group))
+        this.scrollToBottom();
+    }
+    
+  render() {
+      const {chats, dispatch, group, username_login, chatroomloading} = this.props;
 
 
       let children = (
@@ -68,10 +83,14 @@ class ChatRoom extends React.Component {
 
         }
 
+        let loading = '';
 
+        if(chatroomloading){
+            loading = '-loading';
+        }
 
       return(
-        <div className="chatroom">
+        <div className={`chatroom${loading}`}>
         <center><h1>{groupname}</h1></center>
         <div><a className="group-member mt-1">成員</a>{members}</div><br/>
         <div className='chat-list mt-2'>
@@ -126,6 +145,17 @@ class ChatRoom extends React.Component {
         node.scrollIntoView();
     }
 
+    inittimer(){
+      var intervalId = setInterval(this.timer, 3000);
+      this.setState({intervalId: intervalId});
+    }
+
+    timer(){
+      const{group, dispatch} = this.props;
+      if(group.id){
+        dispatch(listChats(group.id, ''));
+      }
+    }
 
 }
 

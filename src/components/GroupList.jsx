@@ -39,7 +39,7 @@ class GroupList extends React.Component {
         let loading = '';
 
         if(groupLoading){
-            loading = 'loading';
+            loading = '-loading';
         }
 
         let children = (
@@ -74,7 +74,7 @@ class GroupList extends React.Component {
                             <div>
                               <InputGroup>
                                 <InputGroupAddon>群組名稱</InputGroupAddon>
-                                <Input type="text"  getRef={(e)=>(this.groupnameEL=e)} placeholder="Enter your Group Name"/>
+                                <Input type="text"  getRef={(e)=>(this.groupnameEL=e)} placeholder="請輸入群組名稱"/>
                               </InputGroup>
                             </div>
                         </ModalBody>

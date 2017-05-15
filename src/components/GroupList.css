@@ -3,6 +3,6 @@
   overflow-x:hidden;
   overflow-y:auto;
 }
-.grouplistloading{
-  background-color: black;
+.grouplist-loading{
+  /*background-image: url('./image/loading.png');*/
 }

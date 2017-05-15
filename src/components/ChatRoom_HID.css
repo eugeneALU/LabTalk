@@ -4,5 +4,8 @@
   height: 35rem!important;
   overflow: auto;
   word-wrap:break-word;
+}
 
+.chat-list-hid-loading {
+  /*background-image: url('./image/loading.png');*/
 }

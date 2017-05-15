@@ -30,7 +30,9 @@
   overflow-y:auto;
   word-wrap:break-word;
 }
-
+.chat-list-loading {
+  /*background-image: url('./image/loading.png');*/
+}
 /* Scrollbar styles */
 ::-webkit-scrollbar {
 width: 12px;

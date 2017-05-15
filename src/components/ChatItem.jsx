@@ -33,7 +33,7 @@ class ChatItem extends React.Component {
       let username_style = 'chat-username-other m-2';
       let text_style = 'chat-text-other m-2';
       if(username === username_login){
-        username_display = 'Me';
+        username_display = '我';
         text_style = 'chat-text-me m-2';
         username_style = 'chat-username-me m-2';
         flex = 'd-flex flex-row-reverse';

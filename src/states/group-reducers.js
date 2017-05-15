@@ -105,6 +105,7 @@ export function chatroom(state = initChatRoomState, action) {
             case '@CHATROOM/CLEAR_CHATS':
                 return {
                     ...state,
+                    group:{},
                     chats: []
                 };
         default:
@@ -124,7 +125,8 @@ export function chatroom_hid(state = initChatRoomHIDState, action) {
         case '@CHATROOM_HID/GET_CHATS':
             return {
                 ...state,
-                chats_hid: action.chats
+                chats_hid: action.chats,
+                chatroom_hidloading: false
             };
             case '@CHATROOM_HID/CLEAR_CHATS':
                 return {
@@ -149,7 +151,7 @@ export function chatroom_hid(state = initChatRoomHIDState, action) {
 const initChatListState = {
 
     hiddenchatroom_open: false,
-    username_login: '哇',
+    username_login: '哈哈',
     chatlist_loading: false
 
 };
