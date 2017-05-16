@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import{
   logInSubmit
 }from 'api/logIn.js';
+=======
+import { logInSubmit } from 'api/logIn.js';
+import {recordusername} from 'states/group-actions.js';
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 export function changeLogInName(texts){
   return {
     type: '@LogIn/NameChange',
@@ -28,14 +33,25 @@ function endLoading(){
     type: '@LogIn/EndLoading'
   };
 }
+<<<<<<< HEAD
 function resetItem(){
+=======
+export function resetItem(){
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
   return{
     type: '@LogIn/Reset'
   };
 }
+<<<<<<< HEAD
 function loginSuccess(){
   return {
     type: '@LogIn/Success',
+=======
+function loginSuccess(username){
+  return {
+    type: '@LogIn/Success',
+    username
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
   }
 }
 function loginFail(){
@@ -53,13 +69,22 @@ export function submitLogIn(name,password){
     return logInSubmit(name,password).then((len)=>{
       if(len){
         console.log("Log in succeess");
+<<<<<<< HEAD
         dispatch(loginSuccess());
+=======
+        dispatch(loginSuccess(name));
+        dispatch(recordusername(name));
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
       }
       else{
         console.log("Log in fail");
         dispatch(loginFail());
         dispatch(resetItem());
+<<<<<<< HEAD
         alert('NO This Account!!');
+=======
+        alert('此帳戶名稱不存在或是密碼錯誤');
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
       }
     });
   };

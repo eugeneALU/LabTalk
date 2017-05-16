@@ -1,4 +1,8 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
+import ChatRoom_HID from 'components/ChatRoom_HID.jsx';
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 import Calendar from 'components/Calendar.jsx';
 import {connect} from 'react-redux';
 import ReactDOM from 'react-dom';
@@ -12,9 +16,22 @@ import {
 
 import './ChatRoom.css';
 import ChatItem from 'components/ChatItem.jsx';
+<<<<<<< HEAD
 import {createChat, changeHiddenChatroom, closeHiddenChatroom, createChat_hid, changeChatroom, listChats, toggle_Calendar} from 'states/group-actions.js';
+=======
+import {createChat, changeHiddenChatroom, closeHiddenChatroom, createChat_hid, changeChatroom, listChats} from 'states/group-actions.js';
+import {toggle_Calendar} from 'states/calendar-actions.js';
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 
+class ChatRoom extends React.Component {
+     static propTypes = {
+        chats: PropTypes.array,
+        hiddenchatroom_open: PropTypes.bool,
+        username_login: PropTypes.string,
+        dispatch: PropTypes.func
+     }
 
+<<<<<<< HEAD
 class ChatRoom extends React.Component {
      static propTypes = {
         chats: PropTypes.array,
@@ -26,10 +43,19 @@ class ChatRoom extends React.Component {
     constructor(props) {
         super(props);
 
+=======
+    constructor(props) {
+        super(props);
+
+        this.state = {
+          intervalId : {}
+        };
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
         this.toggle = this.toggle.bind(this);
         this.handle_chat_submit = this.handle_chat_submit.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
+<<<<<<< HEAD
     }
 
     componentDidUpdate() {
@@ -38,6 +64,41 @@ class ChatRoom extends React.Component {
 
     render() {
        const {chats, dispatch, group, username_login} = this.props;
+=======
+        this.inittimer = this.inittimer.bind(this);
+        this.timer = this.timer.bind(this);
+    }
+
+    componentDidMount(){
+      this.inittimer();
+
+    }
+
+    componentWillUnMount(){
+      clearInterval(this.state.intervalId);
+    }
+    shouldComponentUpdate(nextProps, nextState){
+      if((nextProps.chats.length !== this.props.chats.length) || (nextProps.group.id != this.props.group.id)){
+        return true;
+      }
+      else if(nextProps.hiddenchatroom_open !== this.props.hiddenchatroom_open){
+        return true;
+      }
+      else if(nextProps.calendar !== this.props.calendar){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
+    render() {
+       const {chats, dispatch, group, username_login, hiddenchatroom_open, calendar} = this.props;
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
        let children = (
           <div className='empty d-flex justify-content-center align-items-center' >
               <span className='empty-text'>尚未有任何對話...</span>
@@ -53,8 +114,12 @@ class ChatRoom extends React.Component {
       }
 
       let members = '';
+<<<<<<< HEAD
       let groupname = group.name;
 /*    update = setTimeout(dispatch(listChats(group.id, '')),1000)*/
+=======
+      let groupname = group.name ? group.name : "LABTALK" ;
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 
       if(group.usernames) {
          members = group.usernames.map(p => {
@@ -62,11 +127,18 @@ class ChatRoom extends React.Component {
               return <a className="group-members ml-2" key={p.username+p.id}>{p.username}</a>
           });
       }
+<<<<<<< HEAD
  
+=======
+
+
+
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
       return(
         <div className="d-flex flex-column">
           <div className="d-flex flex-row">
             <div className="roomtitle d-flex justify-content-center">
+<<<<<<< HEAD
               <p id="title" className="">LabTalk</p>
             </div>
             <div className="Calendartitle d-flex justify-content-center">
@@ -89,12 +161,38 @@ class ChatRoom extends React.Component {
               </div>
             </div>
 
+=======
+              <p id="title">{groupname}</p>
+            </div>
+            <div className="Calendartitle d-flex justify-content-center">
+              <img onClick={this.toggle} id="Calendar_icon" src="./image/icon for Calendar/write-board-white.png"/>
+            </div>
+          </div>
+          <div className="d-flex justify-content-end">
+
+            <div className="chatroom mr-auto">
+              <div className='chat-list'>
+                  <div className="d-flex flex-column-reverse">{children}</div>
+                  <div ref={(el) => { this.messagesEnd = el; }}>{''}</div>
+              </div>
+              <div>
+                <InputGroup>
+                  <Input type="text"  getRef={(e)=>(this.chatEL=e)} onKeyPress={this.handleSearchKeyPress} placeholder="輸入訊息...  <使用 @ 開啟/關閉內嵌討論室>"/>
+                </InputGroup>
+              </div>
+            </div>
+            {this.props.hiddenchatroom_open ? <ChatRoom_HID /> : null}
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
             {this.props.calendar ? <Calendar /> : null}
           </div>
         </div>
       )
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     toggle(){
       this.props.dispatch(toggle_Calendar());
     }
@@ -133,11 +231,32 @@ class ChatRoom extends React.Component {
         const node = ReactDOM.findDOMNode(this.messagesEnd);
         node.scrollIntoView();
     }
+<<<<<<< HEAD
+=======
+
+    inittimer(){
+      var intervalId = setInterval(this.timer, 3000);
+      this.setState({intervalId: intervalId});
+    }
+
+    timer(){
+      const{group, dispatch} = this.props;
+      if(group.id){
+        dispatch(listChats(group.id, ''));
+      }
+    }
+
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 }
 
 export default connect((state) => {
     return {
         ...state.chatroom,
+<<<<<<< HEAD
         ...state.chatlist
+=======
+        ...state.chatlist,
+        ...state.calendar
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     };
 })(ChatRoom);

@@ -1,8 +1,16 @@
 .chat-list-hid {
+<<<<<<< HEAD
   border:0.05rem solid lightgray;
   border-radius: 0.5rem;
   height: 35rem!important;
   overflow: auto;
   word-wrap:break-word;
 
+=======
+  height: 91.2vh!important;
+  width: 17vw;
+  overflow: auto;
+  word-wrap:break-word;
+  border-left: 1px solid lightgray;
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 }
