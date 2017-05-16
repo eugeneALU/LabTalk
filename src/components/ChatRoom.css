@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 .roomtitle {
     background-color: #F58B00;
     height: 8.8vh;
@@ -13,6 +17,11 @@
 #title {
     font-size: 5.9vh ;
     font-weight: bold;
+<<<<<<< HEAD
+=======
+    letter-spacing: 0.2rem;
+    color:white;
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 }
 
 #Calendar_icon {
@@ -21,6 +30,7 @@
     margin-bottom: auto;
 }
 
+<<<<<<< HEAD
 .group-members {
   background-color: lightblue;
   color: white!important;
@@ -50,6 +60,22 @@
   border:0.05rem solid lightgray;
   border-radius: 0.5rem;
   height:90% !important;
+=======
+
+
+
+
+
+.chatroom {
+  height: 91.2vh;
+  width: 60vw;
+}
+
+.chat-list {
+  /*border:0.05rem solid lightgray;
+  border-radius: 0.5rem;*/
+  height: 90%;
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
   overflow-x:hidden;
   overflow-y:auto;
   word-wrap:break-word;

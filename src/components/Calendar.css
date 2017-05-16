@@ -65,4 +65,13 @@
 .date {
     font-size: 0.8rem;
     font-weight: bold;
+<<<<<<< HEAD
+=======
+}
+
+#try {
+    background-color: lightsalmon;
+    height: 100%;
+    border-top: 3px solid #F58B00;
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 }

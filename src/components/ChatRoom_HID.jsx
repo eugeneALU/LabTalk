@@ -23,6 +23,7 @@ class ChatRoom_HID extends React.Component {
   };
     constructor(props) {
         super(props);
+<<<<<<< HEAD
         this.scrollToBottom = this.scrollToBottom.bind(this);
 
     }
@@ -34,11 +35,45 @@ class ChatRoom_HID extends React.Component {
     this.scrollToBottom();
 
   }
+=======
+
+        this.state = {
+            intervalId: {}
+        };
+
+        this.scrollToBottom = this.scrollToBottom.bind(this);
+        this.inittimer = this.inittimer.bind(this);
+        this.timer = this.timer.bind(this);
+
+    }
+    componentDidMount() {
+          this.inittimer();
+
+      }
+      componentWillUnMount() {
+          clearInterval(this.state.intervalId);
+      }
+      shouldComponentUpdate(nextProps, nextState) {
+          if (nextProps.chats_hid.length !== this.props.chats_hid.length) {
+              return true;
+          } else {
+              return false;
+          }
+      }
+      componentDidUpdate() {
+          this.scrollToBottom();
+
+      }
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     render() {
       const {chats_hid} = this.props;
       let children = (
           <div className='empty d-flex justify-content-center align-items-center' >
+<<<<<<< HEAD
               <div className='empty-text'>No Conversation here.</div>
+=======
+              <div className='empty-text'>尚未有任何對話...</div>
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
           </div>
 
       );
@@ -50,8 +85,12 @@ class ChatRoom_HID extends React.Component {
         ));
       }
       return(
+<<<<<<< HEAD
         <div>
         <h1>Disccusion Room</h1>
+=======
+        <div className="ml-auto">
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
           <div className='chat-list-hid'>
                 <div className="d-flex flex-column-reverse">{children}</div>
                 <div ref={(el) => { this.messagesEnd = el; }}>{''}</div>
@@ -60,10 +99,29 @@ class ChatRoom_HID extends React.Component {
       );
     }
 
+<<<<<<< HEAD
     scrollToBottom(){
         const node = ReactDOM.findDOMNode(this.messagesEnd);
         node.scrollIntoView();
     }
+=======
+    scrollToBottom() {
+          const node = ReactDOM.findDOMNode(this.messagesEnd);
+          node.scrollIntoView();
+      }
+
+      inittimer() {
+          var intervalId = setInterval(this.timer, 3000);
+          this.setState({intervalId: intervalId});
+      }
+
+      timer() {
+          const {group, dispatch} = this.props;
+          if (group.id) {
+              dispatch(listChats_hid(group.id, ''));
+          }
+      }
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 
 
 }

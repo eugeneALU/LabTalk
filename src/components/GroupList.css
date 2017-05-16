@@ -3,6 +3,14 @@
     margin: 0;
 }
 
+<<<<<<< HEAD
+=======
+.listtitle {
+    background-color: #F58B00;
+    margin: 0;
+}
+
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 .list {
     background-color: #FFBD67;
     height: 91vh;
@@ -17,6 +25,7 @@
     font-weight: bold;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
 }
 
 .listbutton {
@@ -26,6 +35,15 @@
 #li {
     margin: 0.5rem auto !important;
     box-shadow: 0px 3px 15px #000;
+=======
+    color: white;
+}
+
+
+
+#li {
+    margin: 0.5rem auto !important;
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     display: block !important;
     cursor: pointer;
 }
@@ -37,13 +55,21 @@
 
 #li:hover {
     background-color: #F58B00 !important;
+<<<<<<< HEAD
+=======
+    border-color: white;
+    color: white!important;
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 }
 
 .group-list {
   overflow-x:hidden;
   overflow-y:auto;
 }
+<<<<<<< HEAD
 
 .grouplistloading{
   background-color: black;
 }
+=======
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e

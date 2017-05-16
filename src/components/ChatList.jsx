@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Container, Row, Col} from 'reactstrap';
+import Calendar from 'components/Calendar.jsx';
 import GroupList from 'components/GroupList.jsx';
 import ChatRoom from 'components/ChatRoom.jsx';
 import ChatRoom_HID from 'components/ChatRoom_HID.jsx';
@@ -19,9 +20,18 @@ class ChatList extends React.Component {
 
     }
     componentDidMount() {
-        this.props.dispatch(listGroups(''));
+        this.props.dispatch(listGroups('',this.props.username_login));
     }
+
+
     render() {
+<<<<<<< HEAD
+=======
+      const {calendar, hiddenchatroom_open} =this.props;
+
+
+
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
       return(
           <div className="d-flex justify-content-end">
             <div id="grouplist"><GroupList/></div>
@@ -34,6 +44,11 @@ class ChatList extends React.Component {
 export default connect((state) => {
     return {
         ...state.grouplist,
+<<<<<<< HEAD
         ...state.chatlist
+=======
+        ...state.chatlist,
+        ...state.calendar
+>>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     };
 })(ChatList);
