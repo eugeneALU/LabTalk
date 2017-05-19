@@ -75,10 +75,6 @@ const initChatRoomState = {
     chatroomloading: false,
     group:{},
     chats: [],
-<<<<<<< HEAD
-    calendar: false
-=======
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 };
 
 export function chatroom(state = initChatRoomState, action) {
@@ -109,14 +105,6 @@ export function chatroom(state = initChatRoomState, action) {
                    ...state,
                    chats: []
                };
-<<<<<<< HEAD
-          case '@CHATROOM/TOGGLE_CALENDAR':
-               return {
-                   ...state,
-                   calendar: !state.calendar
-               };     
-=======
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
         default:
             return state;
     }
@@ -125,11 +113,6 @@ export function chatroom(state = initChatRoomState, action) {
 const initChatRoomHIDState = {
     chats_hid: [],
     chatroom_hidloading: false
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 };
 
 export function chatroom_hid(state = initChatRoomHIDState, action) {
@@ -162,13 +145,8 @@ export function chatroom_hid(state = initChatRoomHIDState, action) {
 const initChatListState = {
 
     hiddenchatroom_open: false,
-<<<<<<< HEAD
-    username_login: '哇',
-    chatlist_loading: false
-=======
     chatlist_loading: false,
     username_login: ''
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 
 };
 
@@ -194,14 +172,11 @@ export function chatlist(state = initChatListState, action) {
                         ...state,
                         chatlist_loading: false
                     };
-<<<<<<< HEAD
-=======
                     case '@CHATLIST/USERNAME':
                         return {
                             ...state,
                             username_login: action.username
                         };
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
         default:
             return state;
     }

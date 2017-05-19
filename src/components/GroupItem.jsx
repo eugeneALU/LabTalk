@@ -13,22 +13,18 @@ import {
 } from 'reactstrap';
 import {connect} from 'react-redux';
 import {deleteGroup, toggleAddMemberModal, addMembers, changeChatroom, DeleteMembers} from 'states/group-actions.js';
+import {select_by_group} from 'states/calendar-actions.js';
 import moment from 'moment';
 
 import './GroupItem.css';
 
 class GroupItem extends React.Component {
     static propTypes = {
-        Toggle_id: PropTypes.string,
         id: PropTypes.string,
         name: PropTypes.string,
         usernames: PropTypes.array,
         username_login: PropTypes.string,
-<<<<<<< HEAD
-        chatroom_id: PropTypes.string,
-=======
         Toggle_id: PropTypes.string,
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
         dispatch: PropTypes.func
     };
 
@@ -56,8 +52,6 @@ class GroupItem extends React.Component {
       if(group.id===id){
         select = 'select';
       }
-<<<<<<< HEAD
-=======
 
       return(
         <div>
@@ -65,31 +59,17 @@ class GroupItem extends React.Component {
              <h4 className={`group-title${select} "ml-auto mx-auto`}>{this.props.name}</h4>
              <Button className="btn-group" color="danger" onClick={this.handleGroupDelete}>刪除群組</Button>
              <Button color="danger" className="btn-group mt-2 justify-content-center" onClick={this.handle_addmemberbutton_toggle} >成員</Button>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 
-      return(
-        <div>  
-        <div onClick={this.handleGroupClick} className="d-flex flex-column justify-content-center">
-             <h4 className={`group-title${select} "ml-auto mx-auto`}>{this.props.name}</h4>
-             <Button color="success" onClick={this.handle_addmemberbutton_toggle}>改變成員</Button>
-             <Button color="danger" onClick={this.handleGroupDelete}>刪除群組</Button> 
-             <a onClick={this.handle_addmemberbutton_toggle} className="group-member">成員</a>
-             {members}
         </div>
                   <Modal isOpen={addmember_modal_Toggle && Toggle_id===id} toggle={this.handle_addmemberbutton_toggle}>
                       <ModalHeader toggle={this.handle_addmemberbutton_toggle}>改變群組成員</ModalHeader>
                       <ModalBody>
                           <div>
-<<<<<<< HEAD
-                            <InputGroup>
-                              <Input type="text"  getRef={(input)=>(this.input=input)} placeholder="Enter the Members Name"/>
-=======
                             <div className="mb-2">
                             <a className="group-member">成員</a>
                             {members}</div>
                             <InputGroup>
                               <Input type="text"  getRef={(input)=>(this.input=input)} placeholder="輸入成員名稱"/>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
                             </InputGroup>
                           </div>
                       </ModalBody>
@@ -119,17 +99,6 @@ class GroupItem extends React.Component {
         this.props.dispatch(DeleteMembers(this.props.id, this.input.value, this.props.username_login));
     }
 
-<<<<<<< HEAD
-    handleAddMembers(e){
-        this.props.dispatch(addMembers(this.props.id, this.input.value));
-    }
-
-    handleDeleteMembers(e){
-        this.props.dispatch(DeleteMembers(this.props.id, this.input.value));
-    }
-  
-=======
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     handleGroupClick(e){
         let obj={
           id: this.props.id,
@@ -137,6 +106,7 @@ class GroupItem extends React.Component {
           usernames: this.props.usernames
         };
         this.props.dispatch(changeChatroom(obj, ''));
+        this.props.dispatch(select_by_group(this.props.id))
     }
 }
 
@@ -144,10 +114,6 @@ export default connect((state) => {
     return {
         ...state.groupitem,
         ...state.grouplist,
-<<<<<<< HEAD
-        ...state.groupitem,
-=======
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
         ...state.chatroom,
         ...state.chatlist
     };

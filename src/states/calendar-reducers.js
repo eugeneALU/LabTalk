@@ -1,7 +1,9 @@
 const initCalendarState = {
     calendar: false,
     toggle_schdule: true,
-    numindex: 0
+    numindex: 0,
+    modal_activity: false,
+    day: 0
 };
 
 export function calendar(state = initCalendarState, action) {
@@ -9,7 +11,7 @@ export function calendar(state = initCalendarState, action) {
           case '@CALENDAR/TOGGLE_CALENDAR':
                return {
                    ...state,
-                   calendar: !state.calendar,
+                   calendar: true,
                    toggle_schdule :true
                };
           case '@CALENDAR/TOGGLE_SCHDULE':
@@ -22,6 +24,16 @@ export function calendar(state = initCalendarState, action) {
                    ...state,
                    numindex : state.numindex+7
                };
+           case '@CALENDAR/MODAL_ACTIVITY':
+               return {
+                   ...state,
+                   modal_activity : !state.modal_activity
+               };
+           case '@CALENDAR/UPDATE_DATE':
+               return {
+                   ...state,
+                    day: action.day
+               };
         default:
             return state;
     }
@@ -31,93 +43,34 @@ const initActivity={
   newtitle: '',
   newtime: '',
   newdata:'',
-  loading: false,
-  success: false
+  activity: ''
 };
 
-export function newActivity(state = initActivity, action){
+export function newactivity(state = initActivity, action){
   switch(action.type){
-    case '@NewAccount/NameChange':
+    case '@NewActivity/TitleChange':
     return{
       ...state,
-      newname: action.texts
+      newtitle: action.texts
     };
-    case '@NewAccount/PasswordChange':
+    case '@NewActivity/TimeChange':
     return{
       ...state,
-      newpassword: action.texts
+      newtime: action.texts
     };
-    case '@NewAccount/EmailChange':
+    case '@NewActivity/DataChange':
     return{
       ...state,
-      email: action.texts
+      newdata: action.texts
     };
-    case '@NewAccount/StartLoading':
+    case '@NewActivity/Reset':
+    return{
+      ...initActivity
+    };
+    case '@NewActivity/SetActivity':
     return{
       ...state,
-      loading: true
-    };
-    case '@NewAccount/EndLoading':
-    return{
-      ...state,
-      loading: false
-    };
-    case '@NewAccount/Reset':
-    return{
-      ...initAccount
-    };
-    default:
-      return state;
-  }
-}
-
-const Activity={
-  title: '',
-  time:'',
-  data: '',
-  modal_activity: false
-};
-
-export function activity(state = Activity, action){
-  switch(action.type){
-    case '@LogIn/NameChange':
-    return{
-      ...state,
-      name: action.texts
-    };
-    case '@LogIn/PasswordChange':
-    return{
-      ...state,
-      password: action.texts
-    };
-    case '@LogIn/StartLoading':
-    return{
-      ...state,
-      loading: true
-    };
-    case '@LogIn/Toggle':
-    return{
-      ...state,
-      modal: !state.modal
-    };
-    case '@LogIn/EndLoading':
-    return{
-      ...state,
-      loading: false
-    };
-    case '@LogIn/Success':
-    return{
-      ...state,
-     login_success: true
-    };
-    case '@LogIn/Fail':
-    return{
-      ...state,
-      login_success: false
-    };
-    case '@LogIn/Reset':
-    return{
-      ...initLogIn
+      activity : action.activity
     };
     default:
       return state;

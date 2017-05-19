@@ -3,83 +3,82 @@ import {connect} from 'react-redux';
 import moment from 'moment';
 
 import './Calendar.css';
-<<<<<<< HEAD
-=======
-import {toogle_Schdule, next_week} from 'states/calendar-actions.js';
-import{
-  changeAccountName,
-  changeAccountPassword,
-  changeAccountEmail,
-  submitAccount
-} from 'states/newAccount-action.js';
+import {toogle_Schdule, next_week, toggle_modal_activity, update_date,
+        changeTitle, changeTime, changeData, submitActivity, select_by_group} from 'states/calendar-actions.js';
 import {Button,
         Input,
-        Modal, 
-        ModalHeader, 
-        ModalBody, 
+        Modal,
+        ModalHeader,
+        ModalBody,
         ModalFooter
 } from 'reactstrap';
-
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 
 class Calendar extends React.Component {
     constructor(props) {
         super(props);
         moment.locale('zh-tw');
 
-<<<<<<< HEAD
-        this.state = {
-            toggle_schdule: true,
-            numindex: 0
-        };
-
-        this.toggle_schdule = this.toggle_schdule.bind(this);
+        this.toggle_modal = this.toggle_modal.bind(this);
         this.nextweek = this.nextweek.bind(this);
-    }
-
-    toggle_schdule(){
-        this.setState({
-            toggle_schdule : !this.toggle_schdule
-        })
-    }
-
-    nextweek(){
-        this.setState({
-            numindex : this.state.numindex+7
-        })
-=======
         this.toggle_schdule = this.toggle_schdule.bind(this);
-        this.nextweek = this.nextweek.bind(this);
-        this.toggle = this.toggle.bind(this);
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
+        this.TitleChange = this.TitleChange.bind(this);
+        this.TimeChange = this.TimeChange.bind(this);
+        this.DataChange = this.DataChange.bind(this);
+        this.buildActivity =  this.buildActivity.bind(this);
     }
 
     render() {
         let obj;
-<<<<<<< HEAD
-        let weeknumber = moment().weeks();
-        let dddd = moment().weeks(19).format('dddd');
-        let day = moment().week(19).format('MMM Do');
-        let calendar_start =  moment().add(this.state.numindex, 'days').format("MMM Do");
-        let year =  moment().add(this.state.numindex, 'days').format("YYYY");
-        let calendar_end = moment().add(this.state.numindex+7, 'days').format("MMM Do");
-        console.log(this.state.numindex)
+        let activity_all =[];
+        let key;
+        let display_item = (
+            <div className="activity">
+                <p className="display_title"></p>
+                <p className="display_time"></p>
+            </div>
+        );
+      if(this.props.activity.length >0){
+       activity_all =this.props.activity.map(p => {
+          return <div key={`${p.group_id}${p.title}${p.time}`} className="act ml-2">
+         <p className="display_day">{p.day}</p>
+         <p className="display_title">標題:{p.title}</p>
+         <p className="display_time">時間:{p.time}</p>
+     </div>
 
-        if (this.state.toggle_schdule) {
-=======
+        });
+      }
+        // if (this.props.activity.length) {
+/*            for (key in  this.props.activity){
+                 activity_all += (
+                 <div key1={this.props.activity.group_id} className="act">
+                <p className="display_day">{this.props.activity[key].day}</p>
+                <p className="display_title">標題:{this.props.activity[key].title}</p>
+                <p className="display_time">時間:{this.props.activity[key].time}</p>
+            </div>
+
+                 );*/
+            /*}
+        activity_all = this.props.activity.map(p => (
+            <div key={p.group_id} className="act">
+                <p className="display_day">{p.day}</p>
+                <p className="display_title">標題:{p.title}</p>
+                <p className="display_time">時間:{p.time}</p>
+            </div>
+        ));
+      }*/
+        // }
+
 
         let calendar_start =  moment().add(this.props.numindex, 'days').format("MMM Do");
         let year =  moment().add(this.props.numindex, 'days').format("YYYY");
-        let calendar_end = moment().add(this.props.numindex+7, 'days').format("MMM Do");
-        console.log(this.props.numindex)
+        let calendar_end = moment().add(this.props.numindex+6, 'days').format("MMM Do");
 
         if (this.props.toggle_schdule) {
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
             obj = (
                 <div className="d-flex flex-column" id="Calendar">
-                <img id="schdule" className="ml-auto mr-auto" src="./image/icon for Calendar/Calendar-with-a-clock.png" />
-                {/*<activity />*/}
-                <img id="add" onClick={this.toggle_schdule} className="ml-auto mr-auto" src="./image/icon for Calendar/add-button.png" />
+                <br/>
+                <img id="schdule" onClick={this.toggle_schdule} className="ml-auto mr-auto" src="./image/icon for Calendar/Calendar-with-a-clock.png" />
+                {activity_all}<hr/>
                 </div>
             );
         }
@@ -94,158 +93,128 @@ class Calendar extends React.Component {
                                 <p className="display">{year}</p>
                             </div>
                         </li>
-<<<<<<< HEAD
-                        <li className="list-group-item day p-0">
+                        <li className="list-group-item day p-0" onClick={(e) =>this.toggle_modal(0)}>
                             <div className="d-flex flex-row date-display">
                                 <div id="today" className="d-flex align-items-center">
                                    <div className="mt-auto mb-auto">
-                                       <p className="date mb-0">{moment().add(this.state.numindex, 'days').format("dddd")}</p> 
-                                       <p className="date mb-0">{moment().add(this.state.numindex, 'days').format("Do")}</p>
-                                    </div>
-                                </div>
-=======
-                        <li className="list-group-item day p-0" onClick={this.toggle}>
-                            <div className="d-flex flex-row date-display">
-                                <div id="today" className="d-flex align-items-center">
-                                   <div className="mt-auto mb-auto">
-                                       <p className="date mb-0">{moment().add(this.props.numindex, 'days').format("dddd")}</p> 
+                                       <p className="date mb-0">{moment().add(this.props.numindex, 'days').format("dddd")}</p>
                                        <p className="date mb-0">{moment().add(this.props.numindex, 'days').format("Do")}</p>
                                     </div>
                                 </div>
-                                <div id="try">
-                                    <p>oaijergi</p>
+                                <div className="display_calendar d-flex flex-row">
+
                                 </div>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
                             </div>
-                        </li> 
-                        <li className="list-group-item day p-0">
+                        </li>
+                        <li className="list-group-item day p-0" onClick={(e) =>this.toggle_modal(1)}>
                             <div className="d-flex flex-row date-display">
                                 <div id="today" className="d-flex align-items-center">
                                    <div className="mt-auto mb-auto">
-<<<<<<< HEAD
-                                       <p className="date mb-0">{moment().add(this.state.numindex+1, 'days').format("dddd")}</p> 
-                                       <p className="date mb-0">{moment().add(this.state.numindex+1, 'days').format("Do")}</p>
-=======
-                                       <p className="date mb-0">{moment().add(this.props.numindex+1, 'days').format("dddd")}</p> 
+                                       <p className="date mb-0">{moment().add(this.props.numindex+1, 'days').format("dddd")}</p>
                                        <p className="date mb-0">{moment().add(this.props.numindex+1, 'days').format("Do")}</p>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
                                     </div>
                                 </div>
+                                <div className="display_calendar d-flex flex-row">
+
+                                </div>
                             </div>
-                        </li> 
-                        <li className="list-group-item day p-0">
+                        </li>
+                        <li className="list-group-item day p-0" onClick={(e) =>this.toggle_modal(2)}>
                             <div className="d-flex flex-row date-display">
                                 <div id="today" className="d-flex align-items-center">
                                    <div className="mt-auto mb-auto">
-<<<<<<< HEAD
-                                       <p className="date mb-0">{moment().add(this.state.numindex+2, 'days').format("dddd")}</p> 
-                                       <p className="date mb-0">{moment().add(this.state.numindex+2, 'days').format("Do")}</p>
-=======
-                                       <p className="date mb-0">{moment().add(this.props.numindex+2, 'days').format("dddd")}</p> 
+                                       <p className="date mb-0">{moment().add(this.props.numindex+2, 'days').format("dddd")}</p>
                                        <p className="date mb-0">{moment().add(this.props.numindex+2, 'days').format("Do")}</p>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
                                     </div>
                                 </div>
+                                <div className="display_calendar d-flex flex-row">
+
+                                </div>
                             </div>
-                        </li> 
-                        <li className="list-group-item day p-0">
+                        </li>
+                        <li className="list-group-item day p-0" onClick={(e) =>this.toggle_modal(3)}>
                             <div className="d-flex flex-row date-display">
                                 <div id="today" className="d-flex align-items-center">
                                    <div className="mt-auto mb-auto">
-<<<<<<< HEAD
-                                       <p className="date mb-0">{moment().add(this.state.numindex+3, 'days').format("dddd")}</p> 
-                                       <p className="date mb-0">{moment().add(this.state.numindex+3, 'days').format("Do")}</p>
-=======
-                                       <p className="date mb-0">{moment().add(this.props.numindex+3, 'days').format("dddd")}</p> 
+                                       <p className="date mb-0">{moment().add(this.props.numindex+3, 'days').format("dddd")}</p>
                                        <p className="date mb-0">{moment().add(this.props.numindex+3, 'days').format("Do")}</p>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
                                     </div>
                                 </div>
+                                <div className="display_calendar d-flex flex-row">
+
+                                </div>
                             </div>
-                        </li> 
-                        <li className="list-group-item day p-0">
+                        </li>
+                        <li className="list-group-item day p-0" onClick={(e) =>this.toggle_modal(4)}>
                             <div className="d-flex flex-row date-display">
                                 <div id="today" className="d-flex align-items-center">
                                    <div className="mt-auto mb-auto">
-<<<<<<< HEAD
-                                       <p className="date mb-0">{moment().add(this.state.numindex+4, 'days').format("dddd")}</p> 
-                                       <p className="date mb-0">{moment().add(this.state.numindex+4, 'days').format("Do")}</p>
-=======
-                                       <p className="date mb-0">{moment().add(this.props.numindex+4, 'days').format("dddd")}</p> 
+                                       <p className="date mb-0">{moment().add(this.props.numindex+4, 'days').format("dddd")}</p>
                                        <p className="date mb-0">{moment().add(this.props.numindex+4, 'days').format("Do")}</p>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
                                     </div>
                                 </div>
+                                <div className="display_calendar d-flex flex-row">
+
+                                </div>
                             </div>
-                        </li> 
-                        <li className="list-group-item day p-0">
+                        </li>
+                        <li className="list-group-item day p-0" onClick={(e) =>this.toggle_modal(5)}>
                             <div className="d-flex flex-row date-display">
                                 <div id="today" className="d-flex align-items-center">
                                    <div className="mt-auto mb-auto">
-<<<<<<< HEAD
-                                       <p className="date mb-0">{moment().add(this.state.numindex+5, 'days').format("dddd")}</p> 
-                                       <p className="date mb-0">{moment().add(this.state.numindex+5, 'days').format("Do")}</p>
-=======
-                                       <p className="date mb-0">{moment().add(this.props.numindex+5, 'days').format("dddd")}</p> 
+                                       <p className="date mb-0">{moment().add(this.props.numindex+5, 'days').format("dddd")}</p>
                                        <p className="date mb-0">{moment().add(this.props.numindex+5, 'days').format("Do")}</p>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
                                     </div>
                                 </div>
+                                <div className="display_calendar d-flex flex-row">
+
+                                </div>
                             </div>
-                        </li> 
-                        <li className="list-group-item day p-0">
+                        </li>
+                        <li className="list-group-item day p-0" onClick={(e) =>this.toggle_modal(6)}>
                             <div className="d-flex flex-row date-display">
                                 <div id="today" className="d-flex align-items-center">
                                    <div className="mt-auto mb-auto">
-<<<<<<< HEAD
-                                       <p className="date mb-0">{moment().add(this.state.numindex+6, 'days').format("dddd")}</p> 
-                                       <p className="date mb-0">{moment().add(this.state.numindex+6, 'days').format("Do")}</p>
-=======
-                                       <p className="date mb-0">{moment().add(this.props.numindex+6, 'days').format("dddd")}</p> 
+                                       <p className="date mb-0">{moment().add(this.props.numindex+6, 'days').format("dddd")}</p>
                                        <p className="date mb-0">{moment().add(this.props.numindex+6, 'days').format("Do")}</p>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
                                     </div>
                                 </div>
+                                <div className="display_calendar d-flex flex-row">
+
+                                </div>
                             </div>
-                        </li>   
+                        </li>
                         <li id="next"className="list-group-item">
                             <i onClick={this.nextweek} className="ml-auto mx-auto fa fa-angle-double-down fa-2x" aria-hidden="true"></i>
                         </li>
                     </ul>
-<<<<<<< HEAD
-=======
-                    <Modal isOpen={this.props.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Register</ModalHeader>
-                    <ModalBody>
-                    <Input value ={this.props.newtitle} onChange={this.NameChange} placeholder='標題' type="text" className='col-10 m-auto'/>
-                        <br/>
-                        <Input value ={this.props.newtime} onChange={this.PasswordChange} placeholder='時間' type="text" className='col-10 m-auto'/>
-                        <br/>
-                        <Input value ={this.props.newdata} onChange={this.EmailChange} placeholder='詳細資料' type="text" className='col-10 m-auto'/>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button onClick={this.buildActivity} outline color="warning" className='col-4 m-auto'>新增</Button>
-                    </ModalFooter>
-                    </Modal>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
+                        <Modal isOpen={this.props.modal_activity} toggle={this.toggle_modal}>
+                        <ModalHeader toggle={this.toggle_modal}>{moment().add(this.props.numindex+this.props.day, 'days').format("dddd Do")}</ModalHeader>
+                        <ModalBody>
+                        <Input value ={this.props.newtitle} onChange={this.TitleChange} placeholder='標題' type="text" className='col-10 m-auto'/>
+                            <br/>
+                            <Input value ={this.props.newtime} onChange={this.TimeChange} placeholder='時間' type="text" className='col-10 m-auto'/>
+                            <br/>
+                            <Input value ={this.props.newdata} onChange={this.DataChange} placeholder='詳細資料' type="text" className='col-10 m-auto'/>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button onClick={this.buildActivity}  color="danger" className='col-4 m-auto'>新增</Button>
+                        </ModalFooter>
+                        </Modal>
                  </div>
             );
         }
 
         return (
-        <div>
+        <div className="calendar_">
             {obj}
         </div>
         );
     }
-<<<<<<< HEAD
-}
 
-export default connect()(Calendar);
-=======
-
-    toggle() {
-        this.props.dispatch(toggle(this.props.modal));
+    toggle_modal(day) {
+        this.props.dispatch(toggle_modal_activity());
+        this.props.dispatch(update_date(day));
     }
 
     toggle_schdule(){
@@ -255,12 +224,51 @@ export default connect()(Calendar);
     nextweek(){
         this.props.dispatch(next_week());
     }
+
+    TitleChange(e){
+        var texts=e.target.value;
+        this.props.dispatch(changeTitle(texts));
+    }
+
+    TimeChange(e){
+        var texts = e.target.value;
+        this.props.dispatch(changeTime(texts));
+    }
+
+    DataChange(e){
+        var texts = e.target.value;
+        this.props.dispatch(changeData(texts));
+    }
+
+    buildActivity(){
+        if(!this.props.group.id){
+        alert('請選擇群組');
+        }
+        else if(! this.props.newtitle){
+        alert('請輸入標題');
+        }
+        else if(!this.props.newtime){
+        alert('請輸入時間');
+        }
+        else{
+        this.props.dispatch(submitActivity(
+            this.props.newtitle,
+            this.props.newtime,
+            this.props.newdata,
+            this.props.group.id,
+            moment().add(this.props.numindex+this.props.day, 'days').format("YYYY dddd Do")
+        ));
+        }
+    }
 }
+
 
 export default connect((state) => {
     return {
         ...state.chatroom,
-        ...state.calendar
+        ...state.calendar,
+        ...state.activity,
+        ...state.calendar,
+        ...state.newactivity
     };
 })(Calendar);
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e

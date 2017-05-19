@@ -29,28 +29,15 @@ class ChatItem_HID extends React.Component {
         let username_display = username;
         let flex = 'd-flex flex-row';
         let username_style = 'chat-username-other m-2';
-<<<<<<< HEAD
-        let text_style = 'chat-text-other m-2';
-        if (username === username_login) {
-            username_display = 'Me';
-            text_style = 'chat-text-me m-2';
-            username_style = 'chat-username-me m-2';
-            flex = 'd-flex flex-row-reverse';
-=======
         let text_style = 'chat-text_hid m-2';
         if (username === username_login) {
             username_display = '我';
             username_style = 'chat-username-me m-2';
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
         }
 
 
         return (
-<<<<<<< HEAD
-            <div className={flex}>
-=======
             <div className="d-flex flex-row">
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
                 <a className={username_style}>{username_display}</a>{' '}
                 <div title={TimeString} className={text_style} style={{width:this.handle_string_length()}}>{text}</div>
             </div>

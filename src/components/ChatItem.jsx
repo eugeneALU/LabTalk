@@ -1,15 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-<<<<<<< HEAD
-
 import {connect} from 'react-redux';
-
-
-
-=======
-import {connect} from 'react-redux';
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 import './ChatItem.css';
 
 class ChatItem extends React.Component {
@@ -36,33 +28,18 @@ class ChatItem extends React.Component {
       let flex = 'd-flex flex-row';
       let username_style = 'chat-username-other m-2';
       let text_style = 'chat-text-other m-2';
-<<<<<<< HEAD
-      if(username === username_login){
-        username_display = 'Me';
-=======
 
       if(username === username_login){
         username_display = '我';
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
         text_style = 'chat-text-me m-2';
         username_style = 'chat-username-me m-2';
         flex = 'd-flex flex-row-reverse';
       }
 
-<<<<<<< HEAD
-
-
-
-      return(
-      <div className={flex}>
-      <a className={username_style}>{username_display}</a>{' '}<div title={TimeString} className={text_style} style={{width:this.handle_string_length()}}>{text}</div>
-      </div>
-=======
       return(
         <div className={flex}>
         <a className={username_style}>{username_display}</a>{' '}<div title={TimeString} className={text_style} style={{width:this.handle_string_length()}}>{text}</div>
         </div>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
       );
     }
 

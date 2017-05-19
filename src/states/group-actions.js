@@ -53,11 +53,7 @@ function endLoading_grouplist() {
 export function listGroups(searchText, username) {
     return (dispatch, getState) => {
       dispatch(startLoading_grouplist());
-<<<<<<< HEAD
-      return listGroupsFromApi(searchText).then(groups => {
-=======
       return listGroupsFromApi(searchText, username).then(groups => {
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
             dispatch(getGroups(groups));
         }).catch(err => {
             console.error('Error listing posts', err);
@@ -65,17 +61,10 @@ export function listGroups(searchText, username) {
     };
 }
 
-<<<<<<< HEAD
-export function createGroup(name, username, searchText) {
-    return (dispatch, getState) => {
-      return createGroupFromApi(name, username).then(group => {
-        dispatch(listGroups(searchText));
-=======
 export function createGroup(name, username_login, searchText) {
     return (dispatch, getState) => {
       return createGroupFromApi(name,  username_login).then(group => {
         dispatch(listGroups(searchText,  username_login));
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     }).catch(err => {
         console.error('Error creating posts', err);
     });
@@ -98,33 +87,18 @@ function getGroups(groups) {
 export function addGroupUser(id, username){
 
 }
-<<<<<<< HEAD
-export function deleteGroup(id, searchText) {
-    return (dispatch, getState) => {
-      return deleteGroupFromApi(id).then(() => {
-        dispatch(clearchats_hid());
-        dispatch(clearchats());
-        dispatch(listGroups(searchText));
-=======
 export function deleteGroup(id, searchText, username) {
     return (dispatch, getState) => {
       return deleteGroupFromApi(id, username).then(() => {
         dispatch(clearchats_hid());
         dispatch(clearchats());
         dispatch(listGroups(searchText, username));
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     }).catch(err => {
         console.error('Error deleting posts', err);
     });
   };
 }
 
-<<<<<<< HEAD
-export function addMembers(id, username) {
-  return (dispatch, getState) => {
-    return addGroupMembersFromApi(id, username).then(() => {
-      dispatch(listGroups(''));
-=======
 export function addMembers(id, username, username_login) {
   return (dispatch, getState) => {
     return addGroupMembersFromApi(id, username, username_login).then(groups => {
@@ -134,19 +108,12 @@ export function addMembers(id, username, username_login) {
       else{
         dispatch(listGroups('',username_login));
       }
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
   }).catch(err => {
       console.error('Error Username', err);
   });
 };
 }
 
-<<<<<<< HEAD
-export function DeleteMembers(id, username) {
-  return (dispatch, getState) => {
-    return deleteGroupMembersFromApi(id, username).then(() => {
-      dispatch(listGroups(''));
-=======
 export function DeleteMembers(id, username, username_login) {
   return (dispatch, getState) => {
     return deleteGroupMembersFromApi(id, username, username_login).then(groups => {
@@ -156,7 +123,6 @@ export function DeleteMembers(id, username, username_login) {
       else{
         dispatch(listGroups('', username_login));
       }
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
   }).catch(err => {
       console.error('Error Username', err);
   });
@@ -165,10 +131,6 @@ export function DeleteMembers(id, username, username_login) {
 
 export function listChats(id, searchText) {
     return (dispatch, getState) => {
-<<<<<<< HEAD
-      dispatch(startLoading_chatroom());
-=======
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
       return listChatsFromApi(id ,searchText, false).then(chats => {
             dispatch(getChats(chats));
         }).catch(err => {
@@ -191,10 +153,6 @@ export function createChat(id, username, searchText) {
 
 export function listChats_hid(id, searchText) {
     return (dispatch, getState) => {
-<<<<<<< HEAD
-      dispatch(startLoading_chatroom_hid());
-=======
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
       return listChatsFromApi(id ,searchText, true).then(chats => {
             dispatch(getChats_hid(chats));
         }).catch(err => {
@@ -269,12 +227,3 @@ function clearchats_hid(){
     type: '@CHATROOM_HID/CLEAR_CHATS'
   }
 }
-<<<<<<< HEAD
-
-export function toggle_Calendar(){
-    return {
-        type: '@CHATROOM/TOGGLE_CALENDAR'
-    }
-}
-=======
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e

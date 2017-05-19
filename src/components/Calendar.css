@@ -1,11 +1,11 @@
 #Calendar {
-    background-color: #FFBD67; 
+    background-color: #FFBD67;
     width:17vw;
     height: 91.2vh;
 }
 
 #Calendar_set {
-    background-color: white; 
+    background-color: white;
     width:17vw;
     height: 91.2vh;
 }
@@ -65,13 +65,38 @@
 .date {
     font-size: 0.8rem;
     font-weight: bold;
-<<<<<<< HEAD
-=======
 }
 
-#try {
+.activity {
     background-color: lightsalmon;
     height: 100%;
     border-top: 3px solid #F58B00;
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
+}
+
+.calendar_ {
+    background-color: #FFBD67;
+    overflow-y: scroll!important;
+    overflow-x: hidden!important;
+}
+
+.display_title {
+  color:black;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+
+.display_time {
+    color:black;
+    font-weight: bolder;
+    font-size: 1rem;
+}
+
+.display_day{
+  color:black;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+.act {
+    width: 100%;
+    border-bottom: 1px solid white;
 }

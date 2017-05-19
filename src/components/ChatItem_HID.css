@@ -1,24 +1,4 @@
 
-<<<<<<< HEAD
-.chat-text-other {
-  background-color: rgb(228, 231, 247);
-  border: 0.5rem solid rgb(228, 231, 247);
-  border-radius: 0.5rem;
-}
-
-.chat-text-me {
-  background-color: rgb(228, 231, 247);
-  border: 0.5rem solid rgb(228, 231, 247);
-  border-radius: 0.5rem;
-  text-align: right!important;
-}
-.chat-text-me:hover {
-  background-color: rgb(204, 194, 240);
-  border: 0.5rem solid rgb(204, 194, 240);
-  cursor: pointer;
-}
-.chat-text-other:hover {
-=======
 
 
 .chat-text_hid {
@@ -27,15 +7,11 @@
   border-radius: 0.5rem;
 }
 .chat-text_hid:hover {
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
   background-color: rgb(204, 194, 240);
   border: 0.5rem solid rgb(204, 194, 240);
   cursor: pointer;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 .chat-username-other {
   background-color: lightblue;
   border: 0.5rem solid lightblue;

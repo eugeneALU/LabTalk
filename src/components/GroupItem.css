@@ -1,47 +1,23 @@
 .group-members {
-<<<<<<< HEAD
-  background-color: lightblue;
-  color: white!important;
-=======
   background-color: rgb(47, 133, 235)!important;
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
   padding: 0.5rem;
   border: 0.2rem solid white;
   border-radius: 0.5rem;
 }
 
 .group-members:hover {
-<<<<<<< HEAD
-  background-color: rgb(47, 133, 235);
-}
-
-.group-member {
-  background-color: rgb(245, 174, 116);
-  color: white!important;
-=======
   cursor: pointer;
 }
 .group-member {
   background-color: orange!important;
   color: white;
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
   padding: 0.5rem;
   border: 0.2rem solid white;
   border-radius: 0.5rem;
 }
 
-<<<<<<< HEAD
-.group-titleselect {
-    color: red;
-}
-.group-member:hover {
-   background-color: rgb(242, 192, 12);
-   cursor: pointer;
-}
-=======
 
 
 .group-titleselect {
     color: orange;
 }
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e

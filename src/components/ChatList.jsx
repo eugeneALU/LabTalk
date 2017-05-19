@@ -25,13 +25,10 @@ class ChatList extends React.Component {
 
 
     render() {
-<<<<<<< HEAD
-=======
       const {calendar, hiddenchatroom_open} =this.props;
 
 
 
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
       return(
           <div className="d-flex justify-content-end">
             <div id="grouplist"><GroupList/></div>
@@ -44,11 +41,7 @@ class ChatList extends React.Component {
 export default connect((state) => {
     return {
         ...state.grouplist,
-<<<<<<< HEAD
-        ...state.chatlist
-=======
         ...state.chatlist,
         ...state.calendar
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     };
 })(ChatList);

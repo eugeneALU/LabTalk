@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 .roomtitle {
     background-color: #F58B00;
     height: 8.8vh;
@@ -17,11 +14,8 @@
 #title {
     font-size: 5.9vh ;
     font-weight: bold;
-<<<<<<< HEAD
-=======
     letter-spacing: 0.2rem;
     color:white;
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 }
 
 #Calendar_icon {
@@ -30,37 +24,6 @@
     margin-bottom: auto;
 }
 
-<<<<<<< HEAD
-.group-members {
-  background-color: lightblue;
-  color: white!important;
-  padding: 0.5rem;
-  border: 0.2rem solid white;
-  border-radius: 0.5rem;
-}
-
-.group-members:hover {
-  background-color: rgb(47, 133, 235);
-}
-
-.group-member {
-  background-color: rgb(245, 174, 116);
-  color: white!important;
-  padding: 0.5rem;
-  border: 0.2rem solid white;
-  border-radius: 0.5rem;
-}
-
-.group-member:hover {
-   background-color: rgb(242, 192, 12);
-   cursor: pointer;
-}
-
-.chat-list {
-  border:0.05rem solid lightgray;
-  border-radius: 0.5rem;
-  height:90% !important;
-=======
 
 
 
@@ -75,7 +38,6 @@
   /*border:0.05rem solid lightgray;
   border-radius: 0.5rem;*/
   height: 90%;
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
   overflow-x:hidden;
   overflow-y:auto;
   word-wrap:break-word;

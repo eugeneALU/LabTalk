@@ -23,19 +23,6 @@ class ChatRoom_HID extends React.Component {
   };
     constructor(props) {
         super(props);
-<<<<<<< HEAD
-        this.scrollToBottom = this.scrollToBottom.bind(this);
-
-    }
-    componentDidMount(){
-      this.scrollToBottom();
-
-    }
-  componentDidUpdate() {
-    this.scrollToBottom();
-
-  }
-=======
 
         this.state = {
             intervalId: {}
@@ -64,16 +51,11 @@ class ChatRoom_HID extends React.Component {
           this.scrollToBottom();
 
       }
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
     render() {
       const {chats_hid} = this.props;
       let children = (
           <div className='empty d-flex justify-content-center align-items-center' >
-<<<<<<< HEAD
-              <div className='empty-text'>No Conversation here.</div>
-=======
               <div className='empty-text'>尚未有任何對話...</div>
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
           </div>
 
       );
@@ -85,12 +67,7 @@ class ChatRoom_HID extends React.Component {
         ));
       }
       return(
-<<<<<<< HEAD
-        <div>
-        <h1>Disccusion Room</h1>
-=======
         <div className="ml-auto">
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
           <div className='chat-list-hid'>
                 <div className="d-flex flex-column-reverse">{children}</div>
                 <div ref={(el) => { this.messagesEnd = el; }}>{''}</div>
@@ -99,12 +76,6 @@ class ChatRoom_HID extends React.Component {
       );
     }
 
-<<<<<<< HEAD
-    scrollToBottom(){
-        const node = ReactDOM.findDOMNode(this.messagesEnd);
-        node.scrollIntoView();
-    }
-=======
     scrollToBottom() {
           const node = ReactDOM.findDOMNode(this.messagesEnd);
           node.scrollIntoView();
@@ -121,7 +92,6 @@ class ChatRoom_HID extends React.Component {
               dispatch(listChats_hid(group.id, ''));
           }
       }
->>>>>>> ca3615106ee744075409ba9aa255e9229015af3e
 
 
 }
