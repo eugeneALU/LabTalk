@@ -11,7 +11,7 @@ export function calendar(state = initCalendarState, action) {
           case '@CALENDAR/TOGGLE_CALENDAR':
                return {
                    ...state,
-                   calendar: true,
+                   calendar: !state.calendar,
                    toggle_schdule :true
                };
           case '@CALENDAR/TOGGLE_SCHDULE':

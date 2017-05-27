@@ -8,6 +8,11 @@ import {
   toggle
 } from 'states/logIn-action.js';
 
+var NCRYPTO = require('n-crypto');
+var nCrypto = new NCRYPTO({
+        aes_key:'aaaaaaaaaaaaaaaa'//aes key,16 characters
+    });
+
 export function changeAccountName(texts){
   return{
     type: '@NewAccount/NameChange',
@@ -47,7 +52,10 @@ export function submitAccount(newname,newpassword,email){
   return (dispatch, getState) =>{
     dispatch(startGoLoading());
     // check the name is use or not
-   return  logInSubmit(newname).then((len) => {
+    var encode_name = nCrypto.encrypt(newname, 'AES');
+    var encode_password = nCrypto.encrypt(newpassword, 'AES');//base64
+    var encode_email = nCrypto.encrypt(email, 'AES');
+   return  logInSubmit(encode_name).then((len) => {
       if(len){
         console.log("The name has been use");
         alert('此帳戶名稱已被使用');
@@ -56,7 +64,9 @@ export function submitAccount(newname,newpassword,email){
       }
       else{
         // submit the account
-        newSubmit(newname,newpassword,email).then((status)=>{
+
+          console.log(encode_email);
+          newSubmit(encode_name, encode_password, encode_email).then((status)=>{
            dispatch(endGoLoading());
            console.log(status); // output status
            console.log("Submit NewAccount");

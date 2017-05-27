@@ -100,7 +100,7 @@ class ChatRoom extends React.Component {
               <p id="title">{groupname}</p>
             </div>
             <div className="Calendartitle d-flex justify-content-center">
-              <img onClick={this.toggle} id="Calendar_icon" src="./image/icon for Calendar/write-board-white.png"/>
+              <img onClick={this.toggle} id="Calendar_icon" src="./image/icon for calendar/write-board-white.png"/>
             </div>
           </div>
           <div className="d-flex justify-content-end">

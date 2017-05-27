@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 // Develop server URL
- const postBaseUrl = 'http://localhost:8080/api';
+const postBaseUrl = 'http://localhost:8080/api';
 
-export function newSubmit(name,password,email){
+//const postBaseUrl = 'http://labtalk.ap-northeast-1.elasticbeanstalk.com/api';
+
+export function newSubmit(name, password, email){
   let url = `${postBaseUrl}/posts`;
 
   console.log(`Making POST request to: ${url}`);

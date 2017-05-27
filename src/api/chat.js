@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-
+//const postBaseUrl = 'http://labtalk.ap-northeast-1.elasticbeanstalk.com/api';
 
 const postBaseUrl = 'http://localhost:8080/api';
 

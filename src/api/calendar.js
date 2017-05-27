@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 // Develop server URL
- const postBaseUrl = 'http://localhost:8080/api';
+const postBaseUrl = 'http://localhost:8080/api';
+
+//const postBaseUrl = 'http://labtalk.ap-northeast-1.elasticbeanstalk.com/api';
 
 export function newActivity(newtitle,newtime,newdata,group_id,day){
   let url = `${postBaseUrl}/createactivity`;

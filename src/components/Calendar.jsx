@@ -77,7 +77,7 @@ class Calendar extends React.Component {
             obj = (
                 <div className="d-flex flex-column" id="Calendar">
                 <br/>
-                <img id="schdule" onClick={this.toggle_schdule} className="ml-auto mr-auto" src="./image/icon for Calendar/Calendar-with-a-clock.png" />
+                <img id="schdule" onClick={this.toggle_schdule} className="ml-auto mr-auto" src="./image/icon for calendar/calendar-with-a-clock.png" />
                 {activity_all}<hr/>
                 </div>
             );
