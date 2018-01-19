@@ -1,4 +1,5 @@
 # LabTalk
 Developing repository
 # UI DEMO
-https://youtu.be/ShZlHl3Ox_4
+* web : https://www.youtube.com/watch?v=w7bODHCGDak
+* mobile : https://www.youtube.com/watch?v=9qeoKNu6D9U
