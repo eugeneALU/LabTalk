@@ -1,4 +1,3 @@
-# LabTalk
-Developing repository
-# UI DEMO
-https://youtu.be/ShZlHl3Ox_4
+# LabTalk - web verion 
+* This is the project LabTalk web version directory 
+* Should work with LabTalk-Server
