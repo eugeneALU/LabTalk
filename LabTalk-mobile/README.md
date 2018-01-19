@@ -1,5 +1,5 @@
 # LabTalk-mobile
-* Directory "app" is for runing Android Studion for phone simulator
+* Directory "app" is for running Android Studio for phone simulator
 ## How to release 
 1. 要上架需數位簽證(先跳過)
 
@@ -10,7 +10,7 @@
     --platform：ios或android
     --dev：是否在開發環境，默認值為true
     build configuration也設置為Release
-    (C:\Users\user\Desktop\LabTalk-mobile\Labtalkmobile\android\app\build\generated\source\buildConfig\release\com\labtalkmobile)
+    (C:\Users\user\Desktop\LabTalk-mobile\Labtalkmobile\android\app\build\generated\source\buildConfig\release\com\labtalkmobile)**
 
 
    
