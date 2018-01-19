@@ -1,0 +1,23 @@
+.group-members {
+  background-color: rgb(47, 133, 235)!important;
+  padding: 0.5rem;
+  border: 0.2rem solid white;
+  border-radius: 0.5rem;
+}
+
+.group-members:hover {
+  cursor: pointer;
+}
+.group-member {
+  background-color: orange!important;
+  color: white;
+  padding: 0.5rem;
+  border: 0.2rem solid white;
+  border-radius: 0.5rem;
+}
+
+
+
+.group-titleselect {
+    color: orange;
+}
