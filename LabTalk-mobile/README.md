@@ -7,9 +7,13 @@
    * react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output     android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
    
    **--entry-file：JS檔入口文件，以我的專案來說，index.ios.js是我iOS的入口**
+   
    **--platform：ios或android**
+   
    **--dev：是否在開發環境，默認值為true**
+   
    **build configuration也設置為Release**
+   
    **(C:\Users\user\Desktop\LabTalk-mobile\Labtalkmobile\android\app\build\generated\source\buildConfig\release\com\labtalkmobile)**
 
 
