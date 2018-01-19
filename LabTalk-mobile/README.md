@@ -3,7 +3,7 @@
 ## How to release 
 1. 要上架需數位簽證(先跳過)
 
-1. Bundle 
+2. Bundle 
    * react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output     android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
    
    **--entry-file：JS檔入口文件，以我的專案來說，index.ios.js是我iOS的入口**
@@ -18,9 +18,8 @@
 
 
    
-1. 測試 
+3. 測試 
   * react-native run-android --variant=release
-
-1. 生成APK(in android/app/build/outputs/apk/app-release.apk)
+4. 生成APK(in android/app/build/outputs/apk/app-release.apk)
   * cd android 
   * gradlew assembleRelease (產生APK)
